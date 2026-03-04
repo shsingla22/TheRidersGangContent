@@ -88,17 +88,19 @@ a:hover {
 }
 
 .site-nav__brand {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--color-gold) !important;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
   white-space: nowrap;
 }
 
 .site-nav__brand:hover {
-  color: var(--color-white) !important;
+  opacity: 0.85;
+}
+
+.nav-logo {
+  height: 42px;
+  width: auto;
+  display: block;
 }
 
 /* Hamburger toggle */
@@ -195,6 +197,14 @@ a:hover {
   z-index: 2;
   max-width: 820px;
   padding: 3rem 2rem;
+}
+
+.hero__logo {
+  width: 220px;
+  height: auto;
+  margin: 0 auto 2rem;
+  display: block;
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,0.3));
 }
 
 .hero__tagline {
@@ -672,12 +682,13 @@ a:hover {
 }
 
 .footer__brand {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  color: var(--color-gold);
-  letter-spacing: 0.1em;
   margin-bottom: 1rem;
-  font-weight: 700;
+}
+
+.footer__logo {
+  height: 80px;
+  width: auto;
+  display: block;
 }
 
 .footer__desc {
@@ -798,8 +809,16 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  .nav-logo {
+    height: 36px;
+  }
+
   .hero {
     min-height: 70vh;
+  }
+
+  .hero__logo {
+    width: 170px;
   }
 
   .hero__content {
@@ -824,8 +843,8 @@ a:hover {
 }
 
 @media (max-width: 480px) {
-  .hero__title {
-    font-size: 2.2rem;
+  .hero__logo {
+    width: 150px;
   }
 
   .article__title {

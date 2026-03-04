@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <!-- Outer Shield -->
+  <path d="M200 12 L370 80 L370 220 C370 300 290 370 200 392 C110 370 30 300 30 220 L30 80 Z" fill="#1a1a2e" stroke="#c9a96e" stroke-width="6"/>
+  <!-- Inner Shield Border -->
+  <path d="M200 30 L352 92 L352 218 C352 290 278 354 200 374 C122 354 48 290 48 218 L48 92 Z" fill="none" stroke="#c9a96e" stroke-width="2" opacity="0.5"/>
+  <!-- Horseshoe at top -->
+  <path d="M148 100 C120 100 100 130 100 162 C100 190 115 210 130 220 L140 210 C128 202 115 186 115 162 C115 138 130 115 148 115 Z" fill="#c9a96e" opacity="0.3"/>
+  <path d="M252 100 C280 100 300 130 300 162 C300 190 285 210 270 220 L260 210 C272 202 285 186 285 162 C285 138 270 115 252 115 Z" fill="#c9a96e" opacity="0.3"/>
+  <!-- Rearing Horse Silhouette - Bold & Powerful -->
+  <g transform="translate(200, 210) scale(1.1)" fill="#c9a96e">
+    <!-- Body -->
+    <path d="M-8 20 C-20 10 -35 -10 -38 -35 C-40 -50 -35 -70 -25 -82 C-18 -90 -10 -95 -5 -100 C0 -105 5 -115 3 -125 C8 -118 12 -108 8 -98 C15 -102 22 -100 25 -95 C20 -92 15 -90 12 -85 C18 -82 22 -75 20 -65 C18 -58 12 -55 8 -52 C15 -48 20 -38 18 -25 C16 -12 8 0 0 10 C5 15 12 22 18 35 C22 42 25 52 22 62 C20 68 15 72 10 70 C8 65 10 58 12 52 C14 45 12 38 8 30 C5 25 0 20 -8 20 Z"/>
+    <!-- Front Legs (rearing up) -->
+    <path d="M-20 -50 C-28 -62 -38 -78 -45 -90 C-48 -95 -46 -98 -42 -96 C-38 -92 -32 -80 -25 -68 C-22 -62 -18 -55 -18 -48 Z"/>
+    <path d="M-10 -55 C-15 -68 -22 -82 -28 -92 C-30 -96 -28 -99 -24 -97 C-20 -93 -15 -82 -10 -70 C-8 -64 -6 -58 -8 -52 Z"/>
+    <!-- Hind Legs (grounded, powerful) -->
+    <path d="M10 35 C15 48 20 62 22 75 C23 80 20 84 16 82 C14 78 14 70 12 60 C10 50 8 42 8 35 Z"/>
+    <path d="M-5 25 C-12 40 -18 58 -22 72 C-24 78 -20 82 -16 80 C-14 75 -12 65 -8 55 C-5 45 -3 35 -2 28 Z"/>
+    <!-- Tail (flowing, dynamic) -->
+    <path d="M18 -20 C28 -28 42 -32 52 -25 C58 -20 55 -12 48 -15 C42 -18 35 -22 28 -18 C22 -14 18 -8 15 -2 C14 -8 15 -14 18 -20 Z"/>
+    <!-- Mane (wild, flowing) -->
+    <path d="M-5 -100 C-12 -105 -20 -102 -25 -95 C-22 -100 -15 -105 -8 -108 C-2 -110 2 -108 3 -104 Z" opacity="0.7"/>
+    <path d="M-15 -88 C-22 -92 -30 -88 -32 -80 C-28 -86 -22 -90 -16 -88 Z" opacity="0.5"/>
+  </g>
+  <!-- Stars -->
+  <polygon points="105,260 108,268 117,268 110,274 113,282 105,277 97,282 100,274 93,268 102,268" fill="#c9a96e"/>
+  <polygon points="295,260 298,268 307,268 300,274 303,282 295,277 287,282 290,274 283,268 292,268" fill="#c9a96e"/>
+  <polygon points="200,85 203,93 212,93 205,99 208,107 200,102 192,107 195,99 188,93 197,93" fill="#c9a96e"/>
+  <!-- "THE RIDERS" curved text at top -->
+  <defs>
+    <path id="topArc" d="M90 190 A120 120 0 0 1 310 190"/>
+    <path id="bottomArc" d="M100 295 A110 110 0 0 0 300 295"/>
+  </defs>
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="bold" fill="#c9a96e" letter-spacing="8">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">THE RIDERS</textPath>
+  </text>
+  <!-- "GANG" curved text at bottom -->
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="bold" fill="#c9a96e" letter-spacing="12">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">GANG</textPath>
+  </text>
+  <!-- Decorative lines -->
+  <line x1="110" y1="248" x2="175" y2="248" stroke="#c9a96e" stroke-width="2" opacity="0.6"/>
+  <line x1="225" y1="248" x2="290" y2="248" stroke="#c9a96e" stroke-width="2" opacity="0.6"/>
+  <!-- EST. line -->
+  <text x="200" y="340" font-family="Georgia, 'Times New Roman', serif" font-size="14" fill="#c9a96e" text-anchor="middle" letter-spacing="4" opacity="0.7">EST. 2026</text>
+</svg>
