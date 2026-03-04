@@ -28,6 +28,9 @@
   <!-- Navigation -->
   <nav class="site-nav">
     <a href="index.html" class="site-nav__brand">The Riders Gang</a>
+    <button class="nav-toggle" onclick="document.querySelector('.site-nav__links').classList.toggle('active')" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="site-nav__links">
       <li><a href="#articles">Stories</a></li>
       <li><a href="#">Horse Riding</a></li>
@@ -42,8 +45,8 @@
     <div class="hero__content">
       <span class="hero__tagline">Where the Saddle Meets the Street</span>
       <h1 class="hero__title">The Riders Gang</h1>
-      <p class="hero__subtitle">Real stories of horse riding, motorcycle culture, and the fashion born from life in motion. From the harness workshops of nineteenth-century Paris to the mountain passes of the Himalayas — we ride the line between heritage and now.</p>
-      <a href="#articles" class="hero__cta">Read Today's Stories</a>
+      <p class="hero__subtitle">Stories of horse riding, motorcycle culture, and the fashion born from life in motion. From nineteenth-century Paris to the mountain passes of the Himalayas.</p>
+      <a href="#articles" class="hero__cta"><span>Read Today's Stories</span></a>
     </div>
   </section>
 
@@ -60,14 +63,14 @@
       <!-- Article 1: Hermès -->
       <article class="article-card">
         <div class="article-card__image" role="img" aria-label="Hermès equestrian heritage" style="background: linear-gradient(135deg, #3d2b1f 0%, #6b3a2a 40%, #c9a96e 100%); display:flex; align-items:flex-end; padding: 1.5rem;">
-          <span style="font-family: 'Playfair Display', serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Equestrian Heritage</span>
+          <span style="font-family: Georgia, serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Equestrian Heritage</span>
         </div>
         <div class="article-card__body">
           <span class="article-card__category">Equestrian Heritage</span>
           <h3 class="article-card__title">Hermès: From Horse Harnesses to High Fashion</h3>
-          <p class="article-card__excerpt">In 1837, Thierry Hermès opened a harness workshop in Paris. Nearly two centuries later, the house he built is the most coveted luxury brand on earth — and the horse is still at its centre.</p>
+          <p class="article-card__excerpt">In 1837, Thierry Hermès opened a harness workshop in Paris. Nearly two centuries later, the horse is still at the centre of the world's most coveted luxury house.</p>
           <div class="article-card__meta">
-            <span>8 min read</span>
+            <span>5 min read</span>
             <a href="articles/hermes-from-horse-harnesses-to-high-fashion.html" class="article-card__read-more">Read Story &rarr;</a>
           </div>
         </div>
@@ -76,14 +79,14 @@
       <!-- Article 2: Belstaff -->
       <article class="article-card">
         <div class="article-card__image" role="img" aria-label="Belstaff motorcycle jacket" style="background: linear-gradient(135deg, #1a1a2e 0%, #2d3436 40%, #4a5568 100%); display:flex; align-items:flex-end; padding: 1.5rem;">
-          <span style="font-family: 'Playfair Display', serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Motorcycle Culture</span>
+          <span style="font-family: Georgia, serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Motorcycle Culture</span>
         </div>
         <div class="article-card__body">
           <span class="article-card__category">Motorcycle Culture</span>
           <h3 class="article-card__title">Belstaff: The Jacket That Built a Riding Legend</h3>
-          <p class="article-card__excerpt">From a waxed cotton workshop in Stoke-on-Trent to Che Guevara's motorcycle diaries and Steve McQueen's racing days — how Belstaff became the definitive name in motorcycle outerwear.</p>
+          <p class="article-card__excerpt">From Che Guevara's motorcycle diaries to Steve McQueen's racing days — how a waxed cotton workshop in England became motorcycle royalty.</p>
           <div class="article-card__meta">
-            <span>9 min read</span>
+            <span>5 min read</span>
             <a href="articles/belstaff-the-jacket-that-built-a-riding-legend.html" class="article-card__read-more">Read Story &rarr;</a>
           </div>
         </div>
@@ -92,14 +95,14 @@
       <!-- Article 3: Gucci Horsebit -->
       <article class="article-card">
         <div class="article-card__image" role="img" aria-label="Gucci horsebit loafer" style="background: linear-gradient(135deg, #1a1a2e 0%, #6b3a2a 50%, #c9a96e 100%); display:flex; align-items:flex-end; padding: 1.5rem;">
-          <span style="font-family: 'Playfair Display', serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Riding Fashion</span>
+          <span style="font-family: Georgia, serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Riding Fashion</span>
         </div>
         <div class="article-card__body">
           <span class="article-card__category">Riding Fashion</span>
           <h3 class="article-card__title">The Gucci Horsebit Loafer: Born in the Saddle</h3>
-          <p class="article-card__excerpt">In 1953, Aldo Gucci took a snaffle bit — the metal piece placed in a horse's mouth — and miniaturised it onto a leather loafer. It became the most iconic shoe of the twentieth century.</p>
+          <p class="article-card__excerpt">In 1953, Aldo Gucci miniaturised a horse's snaffle bit onto a loafer. It became the only shoe in the Met's permanent collection.</p>
           <div class="article-card__meta">
-            <span>7 min read</span>
+            <span>5 min read</span>
             <a href="articles/the-gucci-horsebit-loafer-born-in-the-saddle.html" class="article-card__read-more">Read Story &rarr;</a>
           </div>
         </div>
@@ -108,14 +111,14 @@
       <!-- Article 4: Riding Boots -->
       <article class="article-card">
         <div class="article-card__image" role="img" aria-label="Riding boots heritage" style="background: linear-gradient(135deg, #3d2b1f 0%, #8b5e3c 50%, #c9a96e 100%); display:flex; align-items:flex-end; padding: 1.5rem;">
-          <span style="font-family: 'Playfair Display', serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Boots & Shoes</span>
+          <span style="font-family: Georgia, serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Boots & Shoes</span>
         </div>
         <div class="article-card__body">
           <span class="article-card__category">Boots & Shoes</span>
           <h3 class="article-card__title">Riding Boots: From Cavalry to Catwalk</h3>
-          <p class="article-card__excerpt">From Roman cavalry to the Duke of Wellington's personal cobbler to the 2026 runways of Chanel and Hermès — the riding boot has marched the longest road of any piece of footwear.</p>
+          <p class="article-card__excerpt">From Roman cavalry to the Duke of Wellington's cobbler to the 2026 runways — the boot that marched the longest road in fashion.</p>
           <div class="article-card__meta">
-            <span>8 min read</span>
+            <span>5 min read</span>
             <a href="articles/riding-boots-from-cavalry-to-catwalk.html" class="article-card__read-more">Read Story &rarr;</a>
           </div>
         </div>
@@ -124,14 +127,14 @@
       <!-- Article 5: Leh-Ladakh -->
       <article class="article-card">
         <div class="article-card__image" role="img" aria-label="Leh-Ladakh motorcycle ride" style="background: linear-gradient(135deg, #2d3436 0%, #4a5568 30%, #718096 60%, #c9a96e 100%); display:flex; align-items:flex-end; padding: 1.5rem;">
-          <span style="font-family: 'Playfair Display', serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Motorcycle Lifestyle</span>
+          <span style="font-family: Georgia, serif; font-size:1.1rem; color: rgba(255,255,255,0.7);">Motorcycle Lifestyle</span>
         </div>
         <div class="article-card__body">
           <span class="article-card__category">Motorcycle Lifestyle</span>
           <h3 class="article-card__title">Leh-Ladakh: The Ride That Changes Everything</h3>
-          <p class="article-card__excerpt">At 5,359 metres, where the air thins and the mountains touch the sky, a motorcycle ride through Ladakh is India's greatest pilgrimage — and the defining experience of its riding culture.</p>
+          <p class="article-card__excerpt">At 5,359 metres, where the air thins and the mountains touch the sky — India's greatest motorcycle pilgrimage and the ride of a lifetime.</p>
           <div class="article-card__meta">
-            <span>10 min read</span>
+            <span>6 min read</span>
             <a href="articles/leh-ladakh-the-ride-that-changes-everything.html" class="article-card__read-more">Read Story &rarr;</a>
           </div>
         </div>
@@ -141,11 +144,11 @@
   </section>
 
   <!-- Brand Statement Section -->
-  <section style="background: var(--color-midnight); padding: var(--space-2xl) var(--space-lg); text-align: center;">
-    <div style="max-width: 700px; margin: 0 auto;">
-      <span style="font-family: var(--font-accent); font-size: 0.85rem; color: var(--color-gold); letter-spacing: 0.25em; text-transform: uppercase;">Our Mission</span>
-      <h2 style="font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--color-white); margin: var(--space-md) 0; line-height: 1.4;">Every ride has a story. Every piece of gear has a history. We find those stories and tell them the way they deserve to be told.</h2>
-      <p style="font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-top: var(--space-md);">The Riders Gang covers horse riding, motorcycle culture, riding fashion, boots, accessories, and the lifestyle that connects them all. We believe that the things riders wear and ride carry histories worth knowing — from the harness workshops of 1837 Paris to the mountain passes of modern Ladakh.</p>
+  <section class="mission-section">
+    <div class="mission-section__inner">
+      <span class="mission-section__label">Our Mission</span>
+      <h2 class="mission-section__quote">Every ride has a story. Every piece of gear has a history. We find those stories and tell them the way they deserve to be told.</h2>
+      <p class="mission-section__desc">The Riders Gang covers horse riding, motorcycle culture, riding fashion, boots, accessories, and the lifestyle that connects them all. From the harness workshops of 1837 Paris to the mountain passes of modern Ladakh.</p>
     </div>
   </section>
 
@@ -157,26 +160,26 @@
       <div class="section__divider"></div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-lg); text-align: center;">
-      <div style="padding: var(--space-xl) var(--space-md); background: var(--color-white); border-radius: 4px; box-shadow: 0 2px 15px rgba(0,0,0,0.04);">
-        <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-midnight); margin-bottom: var(--space-sm);">Horse Riding</h3>
-        <p style="font-size: 0.85rem; color: var(--color-steel); line-height: 1.6;">Equestrian heritage, dressage, show jumping, and the stories behind the world's great riding traditions.</p>
+    <div class="categories-grid">
+      <div class="category-card">
+        <h3 class="category-card__title">Horse Riding</h3>
+        <p class="category-card__desc">Equestrian heritage, dressage, show jumping, and the stories behind the world's great riding traditions.</p>
       </div>
-      <div style="padding: var(--space-xl) var(--space-md); background: var(--color-white); border-radius: 4px; box-shadow: 0 2px 15px rgba(0,0,0,0.04);">
-        <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-midnight); margin-bottom: var(--space-sm);">Motorcycle Culture</h3>
-        <p style="font-size: 0.85rem; color: var(--color-steel); line-height: 1.6;">From café racers to Himalayan odysseys — the machines, the riders, and the roads that define motorcycle life.</p>
+      <div class="category-card">
+        <h3 class="category-card__title">Motorcycle Culture</h3>
+        <p class="category-card__desc">From café racers to Himalayan odysseys — the machines, riders, and roads that define motorcycle life.</p>
       </div>
-      <div style="padding: var(--space-xl) var(--space-md); background: var(--color-white); border-radius: 4px; box-shadow: 0 2px 15px rgba(0,0,0,0.04);">
-        <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-midnight); margin-bottom: var(--space-sm);">Riding Fashion</h3>
-        <p style="font-size: 0.85rem; color: var(--color-steel); line-height: 1.6;">The intersection of riding and style — from Hermès saddles to Gucci horsebit loafers to the quiet luxury movement.</p>
+      <div class="category-card">
+        <h3 class="category-card__title">Riding Fashion</h3>
+        <p class="category-card__desc">Where riding meets style — from Hermès saddles to Gucci horsebit loafers to quiet luxury.</p>
       </div>
-      <div style="padding: var(--space-xl) var(--space-md); background: var(--color-white); border-radius: 4px; box-shadow: 0 2px 15px rgba(0,0,0,0.04);">
-        <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-midnight); margin-bottom: var(--space-sm);">Boots & Shoes</h3>
-        <p style="font-size: 0.85rem; color: var(--color-steel); line-height: 1.6;">Five centuries of riding footwear — from cavalry boots to couture. The brands, the craft, and the history.</p>
+      <div class="category-card">
+        <h3 class="category-card__title">Boots & Shoes</h3>
+        <p class="category-card__desc">Five centuries of riding footwear — from cavalry boots to couture. The brands, the craft, and the history.</p>
       </div>
-      <div style="padding: var(--space-xl) var(--space-md); background: var(--color-white); border-radius: 4px; box-shadow: 0 2px 15px rgba(0,0,0,0.04);">
-        <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-midnight); margin-bottom: var(--space-sm);">Lifestyle</h3>
-        <p style="font-size: 0.85rem; color: var(--color-steel); line-height: 1.6;">The riding life beyond the ride — gear, travel, community, and the culture that connects riders worldwide.</p>
+      <div class="category-card">
+        <h3 class="category-card__title">Lifestyle</h3>
+        <p class="category-card__desc">The riding life beyond the ride — gear, travel, community, and the culture that connects riders worldwide.</p>
       </div>
     </div>
   </section>
