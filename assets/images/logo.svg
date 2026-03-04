@@ -1,46 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
-  <!-- Outer Shield -->
-  <path d="M200 12 L370 80 L370 220 C370 300 290 370 200 392 C110 370 30 300 30 220 L30 80 Z" fill="#1a1a2e" stroke="#c9a96e" stroke-width="6"/>
-  <!-- Inner Shield Border -->
-  <path d="M200 30 L352 92 L352 218 C352 290 278 354 200 374 C122 354 48 290 48 218 L48 92 Z" fill="none" stroke="#c9a96e" stroke-width="2" opacity="0.5"/>
-  <!-- Horseshoe at top -->
-  <path d="M148 100 C120 100 100 130 100 162 C100 190 115 210 130 220 L140 210 C128 202 115 186 115 162 C115 138 130 115 148 115 Z" fill="#c9a96e" opacity="0.3"/>
-  <path d="M252 100 C280 100 300 130 300 162 C300 190 285 210 270 220 L260 210 C272 202 285 186 285 162 C285 138 270 115 252 115 Z" fill="#c9a96e" opacity="0.3"/>
-  <!-- Rearing Horse Silhouette - Bold & Powerful -->
-  <g transform="translate(200, 210) scale(1.1)" fill="#c9a96e">
-    <!-- Body -->
-    <path d="M-8 20 C-20 10 -35 -10 -38 -35 C-40 -50 -35 -70 -25 -82 C-18 -90 -10 -95 -5 -100 C0 -105 5 -115 3 -125 C8 -118 12 -108 8 -98 C15 -102 22 -100 25 -95 C20 -92 15 -90 12 -85 C18 -82 22 -75 20 -65 C18 -58 12 -55 8 -52 C15 -48 20 -38 18 -25 C16 -12 8 0 0 10 C5 15 12 22 18 35 C22 42 25 52 22 62 C20 68 15 72 10 70 C8 65 10 58 12 52 C14 45 12 38 8 30 C5 25 0 20 -8 20 Z"/>
-    <!-- Front Legs (rearing up) -->
-    <path d="M-20 -50 C-28 -62 -38 -78 -45 -90 C-48 -95 -46 -98 -42 -96 C-38 -92 -32 -80 -25 -68 C-22 -62 -18 -55 -18 -48 Z"/>
-    <path d="M-10 -55 C-15 -68 -22 -82 -28 -92 C-30 -96 -28 -99 -24 -97 C-20 -93 -15 -82 -10 -70 C-8 -64 -6 -58 -8 -52 Z"/>
-    <!-- Hind Legs (grounded, powerful) -->
-    <path d="M10 35 C15 48 20 62 22 75 C23 80 20 84 16 82 C14 78 14 70 12 60 C10 50 8 42 8 35 Z"/>
-    <path d="M-5 25 C-12 40 -18 58 -22 72 C-24 78 -20 82 -16 80 C-14 75 -12 65 -8 55 C-5 45 -3 35 -2 28 Z"/>
-    <!-- Tail (flowing, dynamic) -->
-    <path d="M18 -20 C28 -28 42 -32 52 -25 C58 -20 55 -12 48 -15 C42 -18 35 -22 28 -18 C22 -14 18 -8 15 -2 C14 -8 15 -14 18 -20 Z"/>
-    <!-- Mane (wild, flowing) -->
-    <path d="M-5 -100 C-12 -105 -20 -102 -25 -95 C-22 -100 -15 -105 -8 -108 C-2 -110 2 -108 3 -104 Z" opacity="0.7"/>
-    <path d="M-15 -88 C-22 -92 -30 -88 -32 -80 C-28 -86 -22 -90 -16 -88 Z" opacity="0.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 280" fill="none">
+  <!-- Horse silhouette (left) -->
+  <g transform="translate(95, 80) scale(0.7)" fill="#c9a96e">
+    <!-- Horse body rearing -->
+    <path d="M40 120 C35 105 25 85 20 65 C18 55 20 40 28 30 C33 23 38 18 42 12 C45 7 46 0 45 -8 C48 -3 50 5 48 13 C52 10 57 11 59 15 C56 17 53 19 51 22 C55 24 58 30 56 38 C54 43 50 46 47 48 C52 50 56 57 54 67 C52 76 47 84 43 92 C47 97 52 105 56 115 C58 120 60 128 58 135 C56 140 53 142 50 140 C49 137 50 132 51 127 C52 122 51 117 48 112 C45 107 42 103 40 100 Z"/>
+    <!-- Front legs raised -->
+    <path d="M25 45 C20 36 13 24 8 15 C6 11 7 9 10 10 C13 13 18 22 23 32 C25 36 27 41 26 45 Z"/>
+    <path d="M35 40 C31 30 26 20 22 12 C20 9 22 7 24 8 C27 11 31 20 35 30 C36 34 37 38 36 42 Z"/>
+    <!-- Hind legs -->
+    <path d="M48 110 C51 120 54 132 56 142 C56 145 54 148 52 146 C50 143 50 137 49 130 C48 122 47 116 46 110 Z"/>
+    <path d="M38 100 C34 112 30 126 27 138 C26 142 28 145 30 143 C31 140 32 133 34 125 C36 117 38 110 39 104 Z"/>
+    <!-- Tail -->
+    <path d="M54 70 C61 64 70 62 76 67 C80 71 78 77 73 75 C69 73 64 70 60 73 C57 76 55 80 53 85 C53 80 53 75 54 70 Z"/>
+    <!-- Mane -->
+    <path d="M42 12 C38 8 33 9 30 15 C33 10 37 8 41 7 Z" opacity="0.6"/>
   </g>
-  <!-- Stars -->
-  <polygon points="105,260 108,268 117,268 110,274 113,282 105,277 97,282 100,274 93,268 102,268" fill="#c9a96e"/>
-  <polygon points="295,260 298,268 307,268 300,274 303,282 295,277 287,282 290,274 283,268 292,268" fill="#c9a96e"/>
-  <polygon points="200,85 203,93 212,93 205,99 208,107 200,102 192,107 195,99 188,93 197,93" fill="#c9a96e"/>
-  <!-- "THE RIDERS" curved text at top -->
-  <defs>
-    <path id="topArc" d="M90 190 A120 120 0 0 1 310 190"/>
-    <path id="bottomArc" d="M100 295 A110 110 0 0 0 300 295"/>
-  </defs>
-  <text font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="bold" fill="#c9a96e" letter-spacing="8">
-    <textPath href="#topArc" startOffset="50%" text-anchor="middle">THE RIDERS</textPath>
-  </text>
-  <!-- "GANG" curved text at bottom -->
-  <text font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="bold" fill="#c9a96e" letter-spacing="12">
-    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">GANG</textPath>
-  </text>
-  <!-- Decorative lines -->
-  <line x1="110" y1="248" x2="175" y2="248" stroke="#c9a96e" stroke-width="2" opacity="0.6"/>
-  <line x1="225" y1="248" x2="290" y2="248" stroke="#c9a96e" stroke-width="2" opacity="0.6"/>
-  <!-- EST. line -->
-  <text x="200" y="340" font-family="Georgia, 'Times New Roman', serif" font-size="14" fill="#c9a96e" text-anchor="middle" letter-spacing="4" opacity="0.7">EST. 2026</text>
+
+  <!-- Motorcycle silhouette (right) -->
+  <g transform="translate(145, 92) scale(0.65)" fill="#c9a96e">
+    <!-- Rear wheel -->
+    <circle cx="25" cy="85" r="28" fill="none" stroke="#c9a96e" stroke-width="5"/>
+    <circle cx="25" cy="85" r="8" fill="#c9a96e"/>
+    <!-- Front wheel -->
+    <circle cx="145" cy="85" r="28" fill="none" stroke="#c9a96e" stroke-width="5"/>
+    <circle cx="145" cy="85" r="8" fill="#c9a96e"/>
+    <!-- Frame -->
+    <path d="M45 80 L80 40 L110 40 L145 75" stroke="#c9a96e" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M80 40 L55 80" stroke="#c9a96e" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M95 40 L75 80" stroke="#c9a96e" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- Engine block -->
+    <rect x="58" y="55" width="30" height="22" rx="3" fill="#c9a96e"/>
+    <!-- Seat -->
+    <path d="M62 38 C68 32 90 30 105 35" stroke="#c9a96e" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- Handlebars -->
+    <path d="M110 40 L120 28 M110 40 L125 32" stroke="#c9a96e" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Front fork -->
+    <path d="M115 42 L145 80" stroke="#c9a96e" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Exhaust -->
+    <path d="M50 78 L30 85" stroke="#c9a96e" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Tank -->
+    <ellipse cx="88" cy="38" rx="14" ry="7" fill="#c9a96e"/>
+    <!-- Headlight -->
+    <circle cx="140" cy="55" r="5" fill="#c9a96e"/>
+  </g>
+
+  <!-- Divider line -->
+  <line x1="70" y1="195" x2="230" y2="195" stroke="#c9a96e" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- THE RIDERS GANG text -->
+  <text x="150" y="225" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="bold" fill="#c9a96e" text-anchor="middle" letter-spacing="5">THE RIDERS</text>
+  <text x="150" y="260" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="bold" fill="#c9a96e" text-anchor="middle" letter-spacing="8">GANG</text>
 </svg>

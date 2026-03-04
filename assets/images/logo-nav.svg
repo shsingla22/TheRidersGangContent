@@ -1,21 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 50" fill="none">
-  <!-- Small Shield Icon -->
-  <g transform="translate(25, 25) scale(0.28)">
-    <!-- Shield -->
-    <path d="M0 -80 L60 -55 L60 20 C60 55 35 78 0 88 C-35 78 -60 55 -60 20 L-60 -55 Z" fill="#c9a96e"/>
-    <!-- Horse Silhouette (simplified for small size) -->
-    <g transform="translate(0, 5) scale(0.55)" fill="#1a1a2e">
-      <path d="M-8 20 C-20 10 -35 -10 -38 -35 C-40 -50 -35 -70 -25 -82 C-18 -90 -10 -95 -5 -100 C0 -105 5 -115 3 -125 C8 -118 12 -108 8 -98 C15 -102 22 -100 25 -95 C20 -92 15 -90 12 -85 C18 -82 22 -75 20 -65 C18 -58 12 -55 8 -52 C15 -48 20 -38 18 -25 C16 -12 8 0 0 10 C5 15 12 22 18 35 C22 42 25 52 22 62 C20 68 15 72 10 70 C8 65 10 58 12 52 C14 45 12 38 8 30 C5 25 0 20 -8 20 Z"/>
-      <path d="M-20 -50 C-28 -62 -38 -78 -45 -90 C-48 -95 -46 -98 -42 -96 C-38 -92 -32 -80 -25 -68 C-22 -62 -18 -55 -18 -48 Z"/>
-      <path d="M-10 -55 C-15 -68 -22 -82 -28 -92 C-30 -96 -28 -99 -24 -97 C-20 -93 -15 -82 -10 -70 C-8 -64 -6 -58 -8 -52 Z"/>
-      <path d="M10 35 C15 48 20 62 22 75 C23 80 20 84 16 82 C14 78 14 70 12 60 C10 50 8 42 8 35 Z"/>
-      <path d="M-5 25 C-12 40 -18 58 -22 72 C-24 78 -20 82 -16 80 C-14 75 -12 65 -8 55 C-5 45 -3 35 -2 28 Z"/>
-      <path d="M18 -20 C28 -28 42 -32 52 -25 C58 -20 55 -12 48 -15 C42 -18 35 -22 28 -18 C22 -14 18 -8 15 -2 C14 -8 15 -14 18 -20 Z"/>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 50" fill="none">
+  <!-- Horse silhouette (small, left) -->
+  <g transform="translate(12, 4) scale(0.22)" fill="#c9a96e">
+    <path d="M40 120 C35 105 25 85 20 65 C18 55 20 40 28 30 C33 23 38 18 42 12 C45 7 46 0 45 -8 C48 -3 50 5 48 13 C52 10 57 11 59 15 C56 17 53 19 51 22 C55 24 58 30 56 38 C54 43 50 46 47 48 C52 50 56 57 54 67 C52 76 47 84 43 92 C47 97 52 105 56 115 C58 120 60 128 58 135 C56 140 53 142 50 140 C49 137 50 132 51 127 C52 122 51 117 48 112 C45 107 42 103 40 100 Z"/>
+    <path d="M25 45 C20 36 13 24 8 15 C6 11 7 9 10 10 C13 13 18 22 23 32 C25 36 27 41 26 45 Z"/>
+    <path d="M35 40 C31 30 26 20 22 12 C20 9 22 7 24 8 C27 11 31 20 35 30 C36 34 37 38 36 42 Z"/>
+    <path d="M48 110 C51 120 54 132 56 142 C56 145 54 148 52 146 C50 143 50 137 49 130 C48 122 47 116 46 110 Z"/>
+    <path d="M38 100 C34 112 30 126 27 138 C26 142 28 145 30 143 C31 140 32 133 34 125 C36 117 38 110 39 104 Z"/>
+    <path d="M54 70 C61 64 70 62 76 67 C80 71 78 77 73 75 C69 73 64 70 60 73 C57 76 55 80 53 85 C53 80 53 75 54 70 Z"/>
   </g>
+
+  <!-- Motorcycle silhouette (small, after horse) -->
+  <g transform="translate(25, 12) scale(0.16)" fill="#c9a96e">
+    <circle cx="25" cy="85" r="28" fill="none" stroke="#c9a96e" stroke-width="6"/>
+    <circle cx="25" cy="85" r="8" fill="#c9a96e"/>
+    <circle cx="145" cy="85" r="28" fill="none" stroke="#c9a96e" stroke-width="6"/>
+    <circle cx="145" cy="85" r="8" fill="#c9a96e"/>
+    <path d="M45 80 L80 40 L110 40 L145 75" stroke="#c9a96e" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M80 40 L55 80" stroke="#c9a96e" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M95 40 L75 80" stroke="#c9a96e" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <rect x="58" y="55" width="30" height="22" rx="3" fill="#c9a96e"/>
+    <path d="M62 38 C68 32 90 30 105 35" stroke="#c9a96e" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M110 40 L120 28 M110 40 L125 32" stroke="#c9a96e" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M115 42 L145 80" stroke="#c9a96e" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="88" cy="38" rx="14" ry="7" fill="#c9a96e"/>
+    <circle cx="140" cy="55" r="5" fill="#c9a96e"/>
+  </g>
+
+  <!-- Vertical divider -->
+  <line x1="58" y1="8" x2="58" y2="42" stroke="#c9a96e" stroke-width="1" opacity="0.4"/>
+
   <!-- Brand Text -->
-  <text x="58" y="22" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="bold" fill="#c9a96e" letter-spacing="3.5">THE RIDERS</text>
-  <text x="58" y="40" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="bold" fill="#c9a96e" letter-spacing="6">GANG</text>
-  <!-- Decorative accent line -->
-  <line x1="58" y1="24" x2="165" y2="24" stroke="#c9a96e" stroke-width="0.5" opacity="0.4"/>
+  <text x="68" y="24" font-family="Georgia, 'Times New Roman', serif" font-size="15" font-weight="bold" fill="#c9a96e" letter-spacing="3">THE RIDERS</text>
+  <text x="68" y="43" font-family="Georgia, 'Times New Roman', serif" font-size="17" font-weight="bold" fill="#c9a96e" letter-spacing="5">GANG</text>
 </svg>
