@@ -551,8 +551,9 @@ a:hover {
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 2.5rem;
-  background: linear-gradient(135deg, var(--color-leather), var(--color-saddle));
+  background: var(--color-cream);
   overflow: hidden;
+  display: block;
 }
 
 .article__content h2 {
@@ -622,8 +623,9 @@ a:hover {
 .article__content .inline-image {
   width: 100%;
   border-radius: 8px;
-  background: linear-gradient(135deg, #ddd, #bbb);
-  min-height: 300px;
+  background: var(--color-cream);
+  object-fit: cover;
+  display: block;
 }
 
 /* Tags */
