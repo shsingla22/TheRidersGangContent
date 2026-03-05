@@ -20,6 +20,7 @@ from urllib.parse import urljoin
 
 BASE_DIR = os.path.join(os.path.dirname(__file__), "..")
 ARTICLES_DIR = os.path.join(BASE_DIR, "articles")
+FASHION_DIR = os.path.join(BASE_DIR, "fashion")
 ASSETS_DIR = os.path.join(BASE_DIR, "assets")
 CSS_FILE = os.path.join(ASSETS_DIR, "css", "style.css")
 
@@ -30,6 +31,7 @@ def _html_files():
     """Return all HTML files in the project."""
     files = glob.glob(os.path.join(BASE_DIR, "*.html"))
     files += glob.glob(os.path.join(ARTICLES_DIR, "*.html"))
+    files += glob.glob(os.path.join(FASHION_DIR, "*.html"))
     return files
 
 
@@ -47,6 +49,7 @@ def _read(filepath):
 
 INDEX = os.path.join(BASE_DIR, "index.html")
 ARTICLE_FILES = glob.glob(os.path.join(ARTICLES_DIR, "*.html"))
+FASHION_FILES = glob.glob(os.path.join(FASHION_DIR, "*.html"))
 
 
 # ===================================================================
@@ -1227,3 +1230,456 @@ class TestPublishingWorkflow:
         assert "argparse" in content, "Script must use argparse for CLI"
         assert "--date" in content, "Script must accept --date argument"
         assert "--articles" in content, "Script must accept --articles argument"
+
+
+# ===================================================================
+# 19. FASHION & LIFESTYLE SECTION — structure and content
+# ===================================================================
+
+class TestFashionFileStructure:
+    """Verify fashion directory and files exist."""
+
+    def test_fashion_directory_exists(self):
+        assert os.path.isdir(FASHION_DIR), "fashion/ directory must exist"
+
+    def test_fashion_has_files(self):
+        assert len(FASHION_FILES) >= 1, "At least one fashion guide must exist"
+
+    def test_expected_fashion_count(self):
+        assert len(FASHION_FILES) == 6, \
+            f"Expected 6 fashion guides, found {len(FASHION_FILES)}"
+
+    EXPECTED_FASHION_FILES = [
+        "style-guide-riding-boots.html",
+        "style-guide-saddlebag.html",
+        "style-guide-waxed-jacket.html",
+        "style-guide-polo-shirt.html",
+        "style-guide-horsebit-loafer.html",
+        "style-guide-denim.html",
+    ]
+
+    @pytest.mark.parametrize("filename", EXPECTED_FASHION_FILES)
+    def test_expected_fashion_file_exists(self, filename):
+        path = os.path.join(FASHION_DIR, filename)
+        assert os.path.isfile(path), f"fashion/{filename} must exist"
+
+
+class TestFashionPages:
+    """Verify each fashion guide page has correct structure."""
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_doctype(self, filepath):
+        content = _read(filepath)
+        assert content.strip().lower().startswith("<!doctype html"), \
+            f"{filepath} must start with <!DOCTYPE html>"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_lang_attribute(self, filepath):
+        soup = _parse(filepath)
+        html_tag = soup.find("html")
+        assert html_tag and html_tag.get("lang"), \
+            f"{filepath} <html> must have lang attribute"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_title(self, filepath):
+        soup = _parse(filepath)
+        title = soup.find("title")
+        assert title and title.string.strip(), \
+            f"{filepath} must have a non-empty <title>"
+        assert "Rider" in title.string and "Gang" in title.string, \
+            f"{filepath} title must reference the brand"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_meta_description(self, filepath):
+        soup = _parse(filepath)
+        desc = soup.find("meta", attrs={"name": "description"})
+        assert desc and desc.get("content", "").strip(), \
+            f"{filepath} must have a meta description"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_og_tags(self, filepath):
+        soup = _parse(filepath)
+        og_title = soup.find("meta", attrs={"property": "og:title"})
+        og_desc = soup.find("meta", attrs={"property": "og:description"})
+        assert og_title, f"{filepath} must have og:title"
+        assert og_desc, f"{filepath} must have og:description"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_twitter_card(self, filepath):
+        soup = _parse(filepath)
+        tc = soup.find("meta", attrs={"name": "twitter:card"})
+        assert tc, f"{filepath} must have twitter:card meta"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_article_element(self, filepath):
+        soup = _parse(filepath)
+        article = soup.select_one("article.article")
+        assert article, f"{filepath} must have <article class='article'>"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_h1_title(self, filepath):
+        soup = _parse(filepath)
+        h1s = soup.find_all("h1")
+        assert len(h1s) == 1, \
+            f"{filepath} must have exactly one <h1>, found {len(h1s)}"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_category(self, filepath):
+        soup = _parse(filepath)
+        cat = soup.select_one(".article__category")
+        assert cat and cat.text.strip(), \
+            f"{filepath} must have an article category"
+        assert "Fashion" in cat.text or "Lifestyle" in cat.text, \
+            f"{filepath} category must include 'Fashion' or 'Lifestyle'"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_meta_section(self, filepath):
+        soup = _parse(filepath)
+        meta = soup.select_one(".article__meta")
+        assert meta, f"{filepath} must have article meta section"
+        text = meta.text
+        assert "min read" in text, f"{filepath} meta must show reading time"
+        assert "Rider\u2019s Gang" in text or "Rider's Gang" in text, \
+            f"{filepath} must be authored by The Rider's Gang"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_hero_image(self, filepath):
+        soup = _parse(filepath)
+        img = soup.select_one(".article__hero-image")
+        assert img, f"{filepath} must have a hero image"
+        src = img.get("src", "")
+        assert src and src.startswith("http"), \
+            f"{filepath} hero image must have a valid URL src"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_content_with_paragraphs(self, filepath):
+        soup = _parse(filepath)
+        content = soup.select_one(".article__content")
+        assert content, f"{filepath} must have article content div"
+        paragraphs = content.find_all("p")
+        assert len(paragraphs) >= 5, \
+            f"{filepath} must have at least 5 paragraphs of content"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_h2_headings(self, filepath):
+        soup = _parse(filepath)
+        content = soup.select_one(".article__content")
+        h2s = content.find_all("h2") if content else []
+        assert len(h2s) >= 5, \
+            f"{filepath} must have at least 5 section headings (h2) for style looks"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_fashion_video_module(self, filepath):
+        """Fashion guides must have a fashion-video styled module."""
+        soup = _parse(filepath)
+        video = soup.select_one(".fashion-video")
+        assert video, f"{filepath} must have a .fashion-video module"
+        thumbnail = video.select_one(".fashion-video__thumbnail")
+        assert thumbnail, f"{filepath} fashion-video must have a thumbnail image"
+        overlay = video.select_one(".fashion-video__overlay")
+        assert overlay, f"{filepath} fashion-video must have an overlay"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_inline_figures(self, filepath):
+        soup = _parse(filepath)
+        content = soup.select_one(".article__content")
+        figures = content.find_all("figure") if content else []
+        assert len(figures) >= 2, \
+            f"{filepath} must have at least 2 figures with images"
+        for i, fig in enumerate(figures):
+            img = fig.find("img")
+            cap = fig.find("figcaption")
+            assert img, f"{filepath} figure {i+1} must have an img"
+            assert cap and len(cap.text.strip()) >= 20, \
+                f"{filepath} figure {i+1} must have a descriptive figcaption (>=20 chars)"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_blockquote_or_pullquote(self, filepath):
+        soup = _parse(filepath)
+        content = soup.select_one(".article__content")
+        if content:
+            quotes = content.find_all("blockquote")
+            pulls = content.select(".pull-quote")
+            assert len(quotes) + len(pulls) >= 2, \
+                f"{filepath} must have at least 2 blockquotes or pull-quotes"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_tags(self, filepath):
+        soup = _parse(filepath)
+        tags = soup.select(".article__tags .tag")
+        assert len(tags) >= 5, f"{filepath} must have at least 5 tags"
+        tag_texts = [t.text.strip().lower() for t in tags]
+        assert any("style" in t for t in tag_texts), \
+            f"{filepath} tags must include a styling-related tag"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_social_share(self, filepath):
+        soup = _parse(filepath)
+        share = soup.select_one(".social-share")
+        assert share, f"{filepath} must have social share buttons"
+        btns = share.find_all("a")
+        assert len(btns) >= 3, f"{filepath} must have at least 3 share buttons"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_nav(self, filepath):
+        soup = _parse(filepath)
+        nav = soup.find("nav", class_="site-nav")
+        assert nav, f"{filepath} must have a <nav class='site-nav'>"
+        nav_img = soup.select_one(".site-nav .nav-logo")
+        assert nav_img, f"{filepath} nav must have a logo image"
+        assert "logo-nav.svg" in nav_img.get("src", ""), \
+            f"{filepath} nav logo must reference logo-nav.svg"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_has_footer(self, filepath):
+        soup = _parse(filepath)
+        footer = soup.select_one(".site-footer")
+        assert footer, f"{filepath} must have a footer"
+        logo = soup.select_one(".footer__logo")
+        assert logo, f"{filepath} footer must have a logo"
+        bottom = soup.select_one(".footer__bottom")
+        assert bottom and "2026" in bottom.text, \
+            f"{filepath} footer must have copyright with year"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_minimum_word_count(self, filepath):
+        """Fashion guides must have at least 500 words."""
+        soup = _parse(filepath)
+        content = soup.select_one(".article__content")
+        if content:
+            words = content.get_text(strip=True).split()
+            assert len(words) >= 500, \
+                f"{filepath} has only {len(words)} words, expected at least 500"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_all_images_have_alt(self, filepath):
+        soup = _parse(filepath)
+        for img in soup.find_all("img"):
+            alt = img.get("alt")
+            assert alt is not None and alt.strip(), \
+                f'{filepath}: img missing alt text, src={img.get("src", "")}'
+            if img.get("src", "").startswith("http"):
+                assert len(alt) >= 20, \
+                    f'{filepath}: alt text too short ({len(alt)} chars): "{alt}"'
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_images_have_lazy_loading(self, filepath):
+        """Non-hero images should use loading='lazy'."""
+        soup = _parse(filepath)
+        for img in soup.find_all("img"):
+            src = img.get("src", "")
+            loading = img.get("loading")
+            if "logo" in src or loading == "eager":
+                continue
+            if src.startswith("http"):
+                assert loading == "lazy", \
+                    f'{filepath}: image missing loading="lazy", src={src}'
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_css_linked(self, filepath):
+        soup = _parse(filepath)
+        css_links = [
+            link for link in soup.find_all("link", rel="stylesheet")
+            if "style.css" in link.get("href", "")
+        ]
+        assert len(css_links) == 1, \
+            f"{filepath} must link to style.css exactly once"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_font_preconnect(self, filepath):
+        soup = _parse(filepath)
+        preconnects = [
+            link.get("href", "")
+            for link in soup.find_all("link", rel="preconnect")
+        ]
+        has_google = any("fonts.googleapis.com" in h for h in preconnects)
+        has_gstatic = any("fonts.gstatic.com" in h for h in preconnects)
+        assert has_google, f"{filepath} must preconnect to fonts.googleapis.com"
+        assert has_gstatic, f"{filepath} must preconnect to fonts.gstatic.com"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES)
+    def test_no_duplicate_images(self, filepath):
+        """A fashion guide must not use the same image URL twice."""
+        soup = _parse(filepath)
+        srcs = []
+        for img in soup.select("article img"):
+            src = img.get("src", "")
+            if src.startswith("http"):
+                photo_match = re.search(r'(photo-[a-f0-9-]+)', src)
+                if photo_match:
+                    srcs.append(photo_match.group(1))
+        assert len(srcs) == len(set(srcs)), \
+            f"{filepath} has duplicate images: {[s for s in srcs if srcs.count(s) > 1]}"
+
+
+# ===================================================================
+# 20. HOMEPAGE FASHION SECTION
+# ===================================================================
+
+class TestHomepageFashion:
+    """Verify the Fashion & Lifestyle section on the homepage."""
+
+    def test_fashion_section_exists(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="fashion")
+        assert section, "Homepage must have a fashion section with id='fashion'"
+
+    def test_fashion_section_has_title(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="fashion")
+        title = section.select_one(".section__title") if section else None
+        assert title and "Fashion" in title.text, \
+            "Fashion section must have 'Fashion' in its title"
+
+    def test_fashion_section_has_label(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="fashion")
+        label = section.select_one(".section__label") if section else None
+        assert label and label.text.strip(), \
+            "Fashion section must have a label"
+
+    def test_fashion_grid_exists(self):
+        soup = _parse(INDEX)
+        grid = soup.select_one(".fashion-grid")
+        assert grid, "Homepage must have a fashion-grid"
+
+    def test_fashion_cards_count(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".fashion-card")
+        assert len(cards) == 6, \
+            f"Expected 6 fashion cards, found {len(cards)}"
+
+    def test_fashion_cards_have_images(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".fashion-card")
+        for i, card in enumerate(cards):
+            img = card.select_one(".fashion-card__image")
+            assert img, f"Fashion card {i+1} must have an image"
+            src = img.get("src", "")
+            assert src and src.startswith("http"), \
+                f"Fashion card {i+1} image must have a valid URL"
+
+    def test_fashion_cards_have_titles(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".fashion-card")
+        for i, card in enumerate(cards):
+            title = card.select_one(".fashion-card__title")
+            assert title and title.text.strip(), \
+                f"Fashion card {i+1} must have a title"
+
+    def test_fashion_cards_have_excerpts(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".fashion-card")
+        for i, card in enumerate(cards):
+            excerpt = card.select_one(".fashion-card__excerpt")
+            assert excerpt and excerpt.text.strip(), \
+                f"Fashion card {i+1} must have an excerpt"
+
+    def test_fashion_card_excerpts_are_unique(self):
+        soup = _parse(INDEX)
+        excerpts = [
+            e.text.strip()
+            for e in soup.select(".fashion-card__excerpt")
+        ]
+        assert len(excerpts) == len(set(excerpts)), \
+            "Fashion card excerpts must be unique"
+
+    def test_fashion_cards_have_links(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".fashion-card")
+        for i, card in enumerate(cards):
+            link = card.select_one(".fashion-card__link")
+            assert link, f"Fashion card {i+1} must have a link"
+            href = link.get("href", "")
+            assert href and href != "#", \
+                f"Fashion card {i+1} link must have a valid href"
+
+    def test_fashion_card_links_resolve_to_existing_files(self):
+        soup = _parse(INDEX)
+        links = soup.select(".fashion-card__link")
+        for link in links:
+            href = link.get("href", "")
+            if href and not href.startswith("http") and href != "#":
+                full_path = os.path.join(BASE_DIR, href)
+                assert os.path.isfile(full_path), \
+                    f"Fashion link '{href}' points to non-existent file"
+
+    def test_fashion_cards_have_category(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".fashion-card")
+        for i, card in enumerate(cards):
+            cat = card.select_one(".fashion-card__category")
+            assert cat and cat.text.strip(), \
+                f"Fashion card {i+1} must have a category label"
+
+    def test_fashion_cards_have_badge(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".fashion-card")
+        for i, card in enumerate(cards):
+            badge = card.select_one(".fashion-card__badge")
+            assert badge and badge.text.strip(), \
+                f"Fashion card {i+1} must have a badge"
+
+    def test_fashion_cards_have_alt_text(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".fashion-card")
+        for i, card in enumerate(cards):
+            img = card.select_one(".fashion-card__image")
+            alt = img.get("alt", "") if img else ""
+            assert len(alt) >= 20, \
+                f"Fashion card {i+1} image alt text too short: '{alt}'"
+
+
+# ===================================================================
+# 21. CSS FASHION STYLES
+# ===================================================================
+
+class TestCSSFashion:
+    """Verify CSS has fashion module styles."""
+
+    def test_fashion_grid_defined(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-grid" in content, "CSS must define .fashion-grid"
+
+    def test_fashion_card_defined(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-card" in content, "CSS must define .fashion-card"
+
+    def test_fashion_card_image_defined(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-card__image" in content, \
+            "CSS must define .fashion-card__image"
+
+    def test_fashion_card_title_defined(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-card__title" in content, \
+            "CSS must define .fashion-card__title"
+
+    def test_fashion_card_badge_defined(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-card__badge" in content, \
+            "CSS must define .fashion-card__badge"
+
+    def test_fashion_video_defined(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-video" in content, "CSS must define .fashion-video"
+
+    def test_fashion_video_thumbnail_defined(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-video__thumbnail" in content, \
+            "CSS must define .fashion-video__thumbnail"
+
+    def test_fashion_video_overlay_defined(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-video__overlay" in content, \
+            "CSS must define .fashion-video__overlay"
+
+    def test_fashion_video_play_text_defined(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-video__play-text" in content, \
+            "CSS must define .fashion-video__play-text"
+
+    def test_fashion_responsive(self):
+        content = _read(CSS_FILE)
+        assert ".fashion-grid" in content and "768px" in content, \
+            "CSS must have responsive rules for fashion grid"
