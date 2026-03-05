@@ -4,15 +4,20 @@ Daily Content Publishing Script for The Rider's Gang.
 
 This script handles the daily rotation of articles on the homepage:
 1. Moves today's articles to the "From the Archives" section
-2. Inserts new articles into the "Today's Stories" section
+2. Inserts new articles (2 per day) into the "Today's Stories" section
 3. Updates dates and section labels
 4. Validates all article files exist and images return HTTP 200
+5. Generates Instagram posts for each new article
+6. Generates Twitter posts for each new article
 
 Usage:
-    python scripts/publish_daily.py --date 2026-03-06 --articles articles/new-article-1.html articles/new-article-2.html ...
+    python scripts/publish_daily.py --date 2026-03-06 --articles articles/new-article-1.html articles/new-article-2.html
 
 Or to just rotate (move today to archives, no new articles):
     python scripts/publish_daily.py --date 2026-03-06 --rotate-only
+
+Social media posts are saved in social-media/instagram/ and social-media/twitter/
+and are NOT linked from the website.
 """
 
 import argparse
@@ -22,6 +27,9 @@ import sys
 from datetime import datetime
 
 from bs4 import BeautifulSoup
+
+from generate_instagram_posts import generate_instagram_posts
+from generate_twitter_posts import generate_twitter_posts
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -241,6 +249,14 @@ def publish(date_str, article_files, rotate_only=False):
 
     print(f"Published {len(new_articles)} new articles for {formatted_date}")
     print(f"Archived {len(all_archives)} previous articles")
+
+    # 7. Generate social media posts for new articles
+    if not rotate_only and article_files:
+        print("\nGenerating social media posts...")
+        print("Instagram:")
+        generate_instagram_posts(date_str, article_files)
+        print("Twitter:")
+        generate_twitter_posts(date_str, article_files)
 
 
 if __name__ == "__main__":
