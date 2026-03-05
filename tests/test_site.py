@@ -1683,3 +1683,138 @@ class TestCSSFashion:
         content = _read(CSS_FILE)
         assert ".fashion-grid" in content and "768px" in content, \
             "CSS must have responsive rules for fashion grid"
+
+    def test_youtube_embed_css_defined(self):
+        content = _read(CSS_FILE)
+        assert ".youtube-embed" in content, \
+            "CSS must define .youtube-embed for responsive video embeds"
+
+    def test_youtube_embed_iframe_css(self):
+        content = _read(CSS_FILE)
+        assert ".youtube-embed iframe" in content, \
+            "CSS must define .youtube-embed iframe"
+
+
+# ===================================================================
+# 14. YOUTUBE VIDEO EMBEDS — each fashion guide has a YouTube iframe
+# ===================================================================
+
+class TestFashionYouTubeEmbeds:
+    """Verify every fashion guide includes a YouTube video embed."""
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES,
+                             ids=[os.path.basename(f) for f in FASHION_FILES])
+    def test_has_youtube_embed_container(self, filepath):
+        soup = _parse(filepath)
+        yt_div = soup.find("div", class_="youtube-embed")
+        assert yt_div is not None, \
+            f"{os.path.basename(filepath)} must have a .youtube-embed container"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES,
+                             ids=[os.path.basename(f) for f in FASHION_FILES])
+    def test_has_youtube_iframe(self, filepath):
+        soup = _parse(filepath)
+        iframes = soup.find_all("iframe")
+        yt_iframes = [i for i in iframes if "youtube.com/embed/" in (i.get("src") or "")]
+        assert len(yt_iframes) >= 1, \
+            f"{os.path.basename(filepath)} must have at least one YouTube iframe"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES,
+                             ids=[os.path.basename(f) for f in FASHION_FILES])
+    def test_youtube_iframe_has_title(self, filepath):
+        soup = _parse(filepath)
+        iframes = soup.find_all("iframe")
+        yt_iframes = [i for i in iframes if "youtube.com/embed/" in (i.get("src") or "")]
+        for iframe in yt_iframes:
+            assert iframe.get("title"), \
+                f"YouTube iframe in {os.path.basename(filepath)} must have a title attribute"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES,
+                             ids=[os.path.basename(f) for f in FASHION_FILES])
+    def test_youtube_iframe_has_allowfullscreen(self, filepath):
+        soup = _parse(filepath)
+        iframes = soup.find_all("iframe")
+        yt_iframes = [i for i in iframes if "youtube.com/embed/" in (i.get("src") or "")]
+        for iframe in yt_iframes:
+            assert iframe.has_attr("allowfullscreen"), \
+                f"YouTube iframe in {os.path.basename(filepath)} must have allowfullscreen"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES,
+                             ids=[os.path.basename(f) for f in FASHION_FILES])
+    def test_youtube_iframe_has_loading_lazy(self, filepath):
+        soup = _parse(filepath)
+        iframes = soup.find_all("iframe")
+        yt_iframes = [i for i in iframes if "youtube.com/embed/" in (i.get("src") or "")]
+        for iframe in yt_iframes:
+            assert iframe.get("loading") == "lazy", \
+                f"YouTube iframe in {os.path.basename(filepath)} must have loading='lazy'"
+
+    def test_all_fashion_guides_have_unique_video_ids(self):
+        video_ids = []
+        for filepath in FASHION_FILES:
+            soup = _parse(filepath)
+            iframes = soup.find_all("iframe")
+            for iframe in iframes:
+                src = iframe.get("src", "")
+                if "youtube.com/embed/" in src:
+                    vid_id = src.split("youtube.com/embed/")[1].split("?")[0]
+                    video_ids.append(vid_id)
+        assert len(video_ids) == len(set(video_ids)), \
+            "Each fashion guide must embed a unique YouTube video"
+
+
+# ===================================================================
+# 15. IMAGE UNIQUENESS — fashion guides must not reuse story images
+# ===================================================================
+
+class TestFashionImageUniqueness:
+    """Verify fashion guide images do not overlap with story article images."""
+
+    def _extract_photo_ids(self, directory):
+        """Extract Unsplash photo IDs from all HTML files in a directory."""
+        photo_ids = set()
+        for filepath in glob.glob(os.path.join(directory, "*.html")):
+            content = _read(filepath)
+            matches = re.findall(r'unsplash\.com/photo-([a-zA-Z0-9_-]+)', content)
+            photo_ids.update(matches)
+        return photo_ids
+
+    def test_fashion_images_not_in_articles(self):
+        article_ids = self._extract_photo_ids(ARTICLES_DIR)
+        fashion_ids = self._extract_photo_ids(FASHION_DIR)
+        overlap = article_ids & fashion_ids
+        assert len(overlap) == 0, \
+            f"Fashion guides must not reuse article images. Overlapping IDs: {overlap}"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES,
+                             ids=[os.path.basename(f) for f in FASHION_FILES])
+    def test_fashion_hero_image_is_unique(self, filepath):
+        """Each fashion guide's hero image must be different from all article hero images."""
+        soup = _parse(filepath)
+        hero = soup.find("img", class_="article__hero-image")
+        assert hero is not None, f"{os.path.basename(filepath)} must have a hero image"
+        hero_src = hero.get("src", "")
+        # Collect all article hero images
+        article_heroes = set()
+        for af in ARTICLE_FILES:
+            a_soup = _parse(af)
+            a_hero = a_soup.find("img", class_="article__hero-image")
+            if a_hero:
+                article_heroes.add(a_hero.get("src", ""))
+        assert hero_src not in article_heroes, \
+            f"Hero image in {os.path.basename(filepath)} must not duplicate an article hero"
+
+    @pytest.mark.parametrize("filepath", FASHION_FILES,
+                             ids=[os.path.basename(f) for f in FASHION_FILES])
+    def test_fashion_inline_images_are_unique(self, filepath):
+        """Fashion guide inline images must not appear in any story article."""
+        soup = _parse(filepath)
+        fashion_imgs = {img.get("src", "") for img in soup.find_all("img", class_="inline-image")}
+        article_imgs = set()
+        for af in ARTICLE_FILES:
+            a_soup = _parse(af)
+            for img in a_soup.find_all("img"):
+                article_imgs.add(img.get("src", ""))
+        overlap = fashion_imgs & article_imgs
+        assert len(overlap) == 0, \
+            f"Inline images in {os.path.basename(filepath)} must not reuse article images: {overlap}"
