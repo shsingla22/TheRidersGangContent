@@ -25,6 +25,7 @@ from bs4 import BeautifulSoup
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.join(SCRIPT_DIR, "..")
 SOCIAL_DIR = os.path.join(BASE_DIR, "social-media", "twitter")
+SITE_URL = "https://theridersgangcontent.com"
 
 
 def read_article_metadata(filepath):
@@ -66,6 +67,13 @@ def read_article_metadata(filepath):
         if len(paragraphs) >= 6:
             break
 
+    # Extract h2 headings for summary
+    headings = [h2.get_text(strip=True) for h2 in soup.select("h2")]
+
+    # Build article URL
+    rel_path = os.path.relpath(filepath, BASE_DIR)
+    article_url = f"{SITE_URL}/{rel_path}"
+
     return {
         "title": title,
         "category": category,
@@ -74,18 +82,28 @@ def read_article_metadata(filepath):
         "description": description,
         "og_description": og_description,
         "read_time": read_time,
-        "href": os.path.relpath(filepath, BASE_DIR),
+        "href": rel_path,
         "paragraphs": paragraphs,
+        "headings": headings,
+        "article_url": article_url,
     }
 
 
 def generate_thread_text(meta):
-    """Generate a Twitter thread text file with hook + follow-up tweets."""
+    """Generate a Twitter thread text file with hook, summary, content + link."""
     tweets = []
 
     # Tweet 1: Hook using the description
     hook = f"{meta['description']}\n\nA thread. 🧵"
     tweets.append(hook)
+
+    # Tweet 2: Summary of what the article covers
+    headings = meta.get("headings", [])
+    if headings:
+        summary_lines = ["What's covered:"]
+        for h in headings[:4]:
+            summary_lines.append(f"→ {h}")
+        tweets.append("\n".join(summary_lines))
 
     # Build follow-up tweets from article paragraphs
     for i, para in enumerate(meta["paragraphs"][:3]):
@@ -95,10 +113,11 @@ def generate_thread_text(meta):
             text = text.rsplit(" ", 1)[0] + "…"
         tweets.append(text)
 
-    # Final tweet: CTA
+    # Final tweet: CTA with link
     cta = (
-        f"Read the full story: {meta['title']}\n\n"
-        f"Link in bio. @TheRidersGang\n\n"
+        f"Read the full story:\n"
+        f"{meta.get('article_url', 'Link in bio')}\n\n"
+        f"@TheRidersGang\n"
         f"#TheRidersGang #RidingCulture"
     )
     tweets.append(cta)
@@ -113,9 +132,22 @@ def generate_thread_text(meta):
     return "\n".join(lines)
 
 
+def _build_card_summary_html(headings):
+    """Build summary HTML for Twitter card from article headings."""
+    if not headings:
+        return ""
+    items = " · ".join(headings[:4])
+    return f"""      <div class="card__summary">
+        <div class="card__summary-label">Inside</div>
+        {items}
+      </div>"""
+
+
 def generate_card_html(meta, date_str):
     """Generate a visually branded Twitter card HTML (1200x675)."""
     formatted_date = datetime.strptime(date_str, "%Y-%m-%d").strftime("%B %-d, %Y")
+    summary_html = _build_card_summary_html(meta.get("headings", []))
+    link_html = f'      <span class="card__link">{meta.get("article_url", "")}</span>'
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -213,6 +245,34 @@ def generate_card_html(meta, date_str):
     margin-bottom: 30px;
   }}
 
+  .card__summary {{
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 18px;
+    padding-left: 12px;
+    border-left: 2px solid rgba(201, 169, 110, 0.4);
+  }}
+
+  .card__summary-label {{
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c9a96e;
+    margin-bottom: 4px;
+  }}
+
+  .card__link {{
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #c9a96e;
+    margin-bottom: 14px;
+    text-decoration: none;
+  }}
+
   .card__footer {{
     display: flex;
     align-items: center;
@@ -251,6 +311,8 @@ def generate_card_html(meta, date_str):
       <span class="card__category">{meta['category']}</span>
       <h1 class="card__title">{meta['title']}</h1>
       <p class="card__description">{meta['og_description']}</p>
+{summary_html}
+{link_html}
       <div class="card__footer">
         <span class="card__brand">The Rider's Gang</span>
         <span class="card__date">{formatted_date}</span>

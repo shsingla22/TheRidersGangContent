@@ -25,6 +25,7 @@ from bs4 import BeautifulSoup
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.join(SCRIPT_DIR, "..")
 SOCIAL_DIR = os.path.join(BASE_DIR, "social-media", "instagram")
+SITE_URL = "https://theridersgangcontent.com"
 
 
 # Category-to-hashtag mapping for consistent tagging
@@ -67,6 +68,13 @@ def read_article_metadata(filepath):
     insta_src = re.sub(r"w=\d+", "w=1080", hero_src)
     insta_src = re.sub(r"h=\d+", "h=1080", insta_src)
 
+    # Extract h2 headings for summary
+    headings = [h2.get_text(strip=True) for h2 in soup.select("h2")]
+
+    # Build article URL
+    rel_path = os.path.relpath(filepath, BASE_DIR)
+    article_url = f"{SITE_URL}/{rel_path}"
+
     return {
         "title": title,
         "category": category,
@@ -74,24 +82,53 @@ def read_article_metadata(filepath):
         "hero_alt": hero_alt,
         "description": description,
         "read_time": read_time,
-        "href": os.path.relpath(filepath, BASE_DIR),
+        "href": rel_path,
+        "headings": headings,
+        "article_url": article_url,
     }
 
 
+def generate_summary(headings):
+    """Build a summary section from article h2 headings."""
+    if not headings:
+        return ""
+    lines = ["What's inside:"]
+    for h in headings[:5]:
+        lines.append(f"  \u2022 {h}")
+    return "\n".join(lines)
+
+
 def generate_caption(meta):
-    """Generate Instagram caption text with hashtags."""
+    """Generate Instagram caption text with summary, link, and hashtags."""
     category_tags = CATEGORY_HASHTAGS.get(meta["category"], "#Riding #Heritage")
-    caption = (
-        f"{meta['description']}\n\n"
-        f"Full story at the link in bio.\n\n"
-        f"{BASE_HASHTAGS} {category_tags}"
+    summary = generate_summary(meta.get("headings", []))
+    parts = [meta["description"]]
+    if summary:
+        parts.append(summary)
+    parts.append(f"Read the full story:\n{meta['article_url']}")
+    parts.append(f"{BASE_HASHTAGS} {category_tags}")
+    return "\n\n".join(parts)
+
+
+def _build_summary_html(headings):
+    """Build HTML summary bullet points from article headings."""
+    if not headings:
+        return ""
+    items = "\n".join(
+        f'        <div class="post__summary-item">\u2022 {h}</div>'
+        for h in headings[:5]
     )
-    return caption
+    return f"""      <div class="post__summary">
+        <div class="post__summary-label">What's Inside</div>
+{items}
+      </div>"""
 
 
 def generate_post_html(meta, date_str):
     """Generate a visually branded 1080x1080 Instagram post as an HTML file."""
     formatted_date = datetime.strptime(date_str, "%Y-%m-%d").strftime("%B %-d, %Y")
+    summary_html = _build_summary_html(meta.get("headings", []))
+    link_html = f'      <span class="post__link">{meta["article_url"]}</span>'
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -180,6 +217,41 @@ def generate_post_html(meta, date_str):
     max-width: 850px;
   }}
 
+  .post__summary {{
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    border-left: 3px solid #c9a96e;
+    background: rgba(201, 169, 110, 0.08);
+  }}
+
+  .post__summary-label {{
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c9a96e;
+    margin-bottom: 8px;
+  }}
+
+  .post__summary-item {{
+    margin: 4px 0;
+  }}
+
+  .post__link {{
+    display: inline-block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #c9a96e;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }}
+
   .post__footer {{
     display: flex;
     justify-content: space-between;
@@ -241,6 +313,8 @@ def generate_post_html(meta, date_str):
       <span class="post__category">{meta['category']}</span>
       <h1 class="post__title">{meta['title']}</h1>
       <p class="post__description">{meta['description']}</p>
+{summary_html}
+{link_html}
       <div class="post__footer">
         <span class="post__brand">The Rider's Gang</span>
         <span class="post__date">{formatted_date}</span>

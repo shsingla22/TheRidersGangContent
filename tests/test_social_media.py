@@ -92,6 +92,15 @@ class TestInstagramMetadata:
         meta = ig_read_metadata(_article_paths()[0])
         assert len(meta["hero_alt"]) > 0
 
+    def test_extracts_headings(self):
+        meta = ig_read_metadata(_article_paths()[0])
+        assert len(meta["headings"]) >= 3
+
+    def test_has_article_url(self):
+        meta = ig_read_metadata(_article_paths()[0])
+        assert meta["article_url"].startswith("https://")
+        assert "articles/" in meta["article_url"]
+
 
 # ===================================================================
 # Instagram Script — Caption Generation
@@ -105,10 +114,16 @@ class TestInstagramCaption:
         caption = generate_caption(meta)
         assert meta["description"] in caption
 
-    def test_caption_contains_link_cta(self):
+    def test_caption_contains_summary(self):
         meta = ig_read_metadata(_article_paths()[0])
         caption = generate_caption(meta)
-        assert "link in bio" in caption.lower()
+        assert "What's inside:" in caption
+
+    def test_caption_contains_article_link(self):
+        meta = ig_read_metadata(_article_paths()[0])
+        caption = generate_caption(meta)
+        assert "theridersgangcontent.com" in caption
+        assert "articles/" in caption
 
     def test_caption_contains_base_hashtags(self):
         meta = ig_read_metadata(_article_paths()[0])
@@ -170,6 +185,24 @@ class TestInstagramPostHTML:
     def test_has_description(self, post_soup):
         desc = post_soup.select_one(".post__description")
         assert desc is not None
+
+    def test_has_summary_section(self, post_soup):
+        summary = post_soup.select_one(".post__summary")
+        assert summary is not None
+
+    def test_summary_has_label(self, post_soup):
+        label = post_soup.select_one(".post__summary-label")
+        assert label is not None
+        assert "Inside" in label.text
+
+    def test_summary_has_items(self, post_soup):
+        items = post_soup.select(".post__summary-item")
+        assert len(items) >= 3
+
+    def test_has_article_link(self, post_soup):
+        link = post_soup.select_one(".post__link")
+        assert link is not None
+        assert "theridersgangcontent.com" in link.text
 
     def test_has_brand_footer(self, post_soup):
         brand = post_soup.select_one(".post__brand")
@@ -284,6 +317,15 @@ class TestTwitterMetadata:
         for p in meta["paragraphs"]:
             assert len(p) > 40
 
+    def test_extracts_headings(self):
+        meta = tw_read_metadata(_article_paths()[0])
+        assert len(meta["headings"]) >= 3
+
+    def test_has_article_url(self):
+        meta = tw_read_metadata(_article_paths()[0])
+        assert meta["article_url"].startswith("https://")
+        assert "articles/" in meta["article_url"]
+
 
 # ===================================================================
 # Twitter Script — Thread Generation
@@ -302,16 +344,21 @@ class TestTwitterThread:
         thread = generate_thread_text(meta)
         assert "thread" in thread.lower()[:300]
 
+    def test_thread_has_summary_tweet(self):
+        meta = tw_read_metadata(_article_paths()[0])
+        thread = generate_thread_text(meta)
+        assert "What's covered:" in thread
+
+    def test_thread_has_article_link(self):
+        meta = tw_read_metadata(_article_paths()[0])
+        thread = generate_thread_text(meta)
+        assert "theridersgangcontent.com" in thread
+
     def test_last_tweet_has_cta(self):
         meta = tw_read_metadata(_article_paths()[0])
         thread = generate_thread_text(meta)
         assert "@TheRidersGang" in thread
         assert "#TheRidersGang" in thread
-
-    def test_last_tweet_has_article_title(self):
-        meta = tw_read_metadata(_article_paths()[0])
-        thread = generate_thread_text(meta)
-        assert meta["title"] in thread
 
     def test_individual_tweets_under_280_chars(self):
         meta = tw_read_metadata(_article_paths()[0])
@@ -361,6 +408,20 @@ class TestTwitterCardHTML:
 
     def test_has_description(self, card_soup):
         assert card_soup.select_one(".card__description") is not None
+
+    def test_has_summary(self, card_soup):
+        summary = card_soup.select_one(".card__summary")
+        assert summary is not None
+
+    def test_summary_has_label(self, card_soup):
+        label = card_soup.select_one(".card__summary-label")
+        assert label is not None
+        assert "Inside" in label.text
+
+    def test_has_article_link(self, card_soup):
+        link = card_soup.select_one(".card__link")
+        assert link is not None
+        assert "theridersgangcontent.com" in link.text
 
     def test_has_brand(self, card_soup):
         brand = card_soup.select_one(".card__brand")
