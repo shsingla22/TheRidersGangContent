@@ -1228,3 +1228,195 @@ class TestPublishingWorkflow:
         assert "--date" in content, "Script must accept --date argument"
         assert "--articles" in content, "Script must accept --articles argument"
 
+
+# ===================================================================
+# 19. COMMUNITY SECTION
+# ===================================================================
+
+class TestCommunitySection:
+    """Verify the Community section exists and has correct structure."""
+
+    def test_community_section_exists(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="community")
+        assert section, "Homepage must have a community section with id='community'"
+
+    def test_community_has_title(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="community")
+        title = section.find("h2", class_="community__title")
+        assert title and title.text.strip(), "Community section must have a title"
+
+    def test_community_has_label(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="community")
+        label = section.find("span", class_="community__label")
+        assert label and label.text.strip(), "Community section must have a label"
+
+    def test_community_has_subtitle(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="community")
+        subtitle = section.find("p", class_="community__subtitle")
+        assert subtitle and subtitle.text.strip(), \
+            "Community section must have a subtitle"
+
+    def test_community_grid_exists(self):
+        soup = _parse(INDEX)
+        grid = soup.select_one(".community-grid")
+        assert grid, "Homepage must have a community-grid"
+
+    def test_community_cards_count(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".community-card")
+        assert len(cards) == 4, \
+            f"Expected 4 community cards, found {len(cards)}"
+
+    def test_community_cards_have_icons(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".community-card")
+        for card in cards:
+            icon = card.select_one(".community-card__icon")
+            assert icon, "Each community card must have an icon"
+            svg = icon.find("svg")
+            assert svg, "Each community card icon must contain an SVG"
+
+    def test_community_cards_have_titles(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".community-card")
+        for card in cards:
+            title = card.select_one(".community-card__title")
+            assert title and title.text.strip(), \
+                "Each community card must have a title"
+
+    def test_community_cards_have_descriptions(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".community-card")
+        for card in cards:
+            desc = card.select_one(".community-card__desc")
+            assert desc and len(desc.text.strip()) > 20, \
+                "Each community card must have a description (>20 chars)"
+
+    def test_community_cards_have_buttons(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".community-card")
+        for card in cards:
+            btn = card.select_one(".community-card__btn")
+            assert btn, "Each community card must have a button/CTA"
+            assert btn.text.strip(), "Each community button must have text"
+
+    def test_community_has_featured_card(self):
+        soup = _parse(INDEX)
+        featured = soup.select_one(".community-card--featured")
+        assert featured, "Community must have a featured/membership card"
+
+    def test_community_featured_has_primary_button(self):
+        soup = _parse(INDEX)
+        featured = soup.select_one(".community-card--featured")
+        btn = featured.select_one(".community-card__btn--primary")
+        assert btn, "Featured community card must have a primary CTA button"
+
+    def test_community_stats_exist(self):
+        soup = _parse(INDEX)
+        stats = soup.select_one(".community__stats")
+        assert stats, "Community section must have a stats bar"
+
+    def test_community_stats_count(self):
+        soup = _parse(INDEX)
+        stats = soup.select(".community__stat")
+        assert len(stats) == 4, \
+            f"Expected 4 community stats, found {len(stats)}"
+
+    def test_community_stats_have_numbers(self):
+        soup = _parse(INDEX)
+        stats = soup.select(".community__stat")
+        for stat in stats:
+            number = stat.select_one(".community__stat-number")
+            assert number and number.text.strip(), \
+                "Each community stat must have a number"
+
+    def test_community_stats_have_labels(self):
+        soup = _parse(INDEX)
+        stats = soup.select(".community__stat")
+        for stat in stats:
+            label = stat.select_one(".community__stat-label")
+            assert label and label.text.strip(), \
+                "Each community stat must have a label"
+
+    def test_community_nav_link_exists(self):
+        soup = _parse(INDEX)
+        nav_links = soup.select(".site-nav__links a")
+        community_links = [a for a in nav_links if "community" in a.get("href", "").lower()]
+        assert len(community_links) >= 1, \
+            "Navigation must have a link to the community section"
+
+    def test_no_lifestyle_references_in_nav(self):
+        soup = _parse(INDEX)
+        nav_links = soup.select(".site-nav__links a")
+        for link in nav_links:
+            assert "lifestyle" not in link.text.lower(), \
+                f"Nav must not contain 'Lifestyle' link, found: {link.text}"
+
+
+class TestCSSCommunity:
+    """Verify CSS has community styles."""
+
+    def test_community_section_defined(self):
+        content = _read(CSS_FILE)
+        assert ".community" in content, "CSS must define .community"
+
+    def test_community_grid_defined(self):
+        content = _read(CSS_FILE)
+        assert ".community-grid" in content, "CSS must define .community-grid"
+
+    def test_community_card_defined(self):
+        content = _read(CSS_FILE)
+        assert ".community-card" in content, "CSS must define .community-card"
+
+    def test_community_card_title_defined(self):
+        content = _read(CSS_FILE)
+        assert ".community-card__title" in content, \
+            "CSS must define .community-card__title"
+
+    def test_community_card_btn_defined(self):
+        content = _read(CSS_FILE)
+        assert ".community-card__btn" in content, \
+            "CSS must define .community-card__btn"
+
+    def test_community_card_featured_defined(self):
+        content = _read(CSS_FILE)
+        assert ".community-card--featured" in content, \
+            "CSS must define .community-card--featured"
+
+    def test_community_stats_defined(self):
+        content = _read(CSS_FILE)
+        assert ".community__stats" in content, \
+            "CSS must define .community__stats"
+
+    def test_community_responsive(self):
+        content = _read(CSS_FILE)
+        assert ".community-grid" in content and "768px" in content, \
+            "CSS must have responsive rules for community grid"
+
+
+class TestArticleNavCommunity:
+    """Verify article nav links point to community, not lifestyle."""
+
+    @pytest.mark.parametrize("filepath", ARTICLE_FILES,
+                             ids=[os.path.basename(f) for f in ARTICLE_FILES])
+    def test_article_has_community_nav_link(self, filepath):
+        soup = _parse(filepath)
+        nav_links = soup.select(".site-nav__links a")
+        community_links = [a for a in nav_links
+                          if "community" in (a.get("href", "") + a.text).lower()]
+        assert len(community_links) >= 1, \
+            f"{os.path.basename(filepath)} nav must have a Community link"
+
+    @pytest.mark.parametrize("filepath", ARTICLE_FILES,
+                             ids=[os.path.basename(f) for f in ARTICLE_FILES])
+    def test_article_no_lifestyle_in_nav(self, filepath):
+        soup = _parse(filepath)
+        nav_links = soup.select(".site-nav__links a")
+        for link in nav_links:
+            assert "lifestyle" not in link.text.lower(), \
+                f"{os.path.basename(filepath)} nav must not have 'Lifestyle', found: {link.text}"
+
