@@ -28,7 +28,7 @@
   <polygon points="200,217 205,222 200,227 195,222" fill="#c9a96e" opacity="0.5"/>
 
   <!-- ========== TEXT ========== -->
-  <text x="200" y="258" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="bold" fill="#c9a96e" text-anchor="middle" letter-spacing="6">THE RIDERS</text>
+  <text x="200" y="258" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="bold" fill="#c9a96e" text-anchor="middle" letter-spacing="6">THE RIDER&#39;S</text>
   <text x="200" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="bold" fill="#c9a96e" text-anchor="middle" letter-spacing="10">GANG</text>
   <text x="200" y="333" font-family="Georgia, 'Times New Roman', serif" font-size="12" fill="#c9a96e" text-anchor="middle" letter-spacing="5" opacity="0.55">EST. 2026</text>
 
