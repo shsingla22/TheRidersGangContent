@@ -72,7 +72,7 @@ class TestFileStructure:
         assert len(ARTICLE_FILES) >= 1, "At least one article must exist"
 
     def test_expected_article_count(self):
-        assert len(ARTICLE_FILES) == 5, f"Expected 5 articles, found {len(ARTICLE_FILES)}"
+        assert len(ARTICLE_FILES) == 10, f"Expected 10 articles, found {len(ARTICLE_FILES)}"
 
     @pytest.mark.parametrize("filepath", _html_files())
     def test_html_is_valid_doctype(self, filepath):
@@ -788,7 +788,9 @@ ARTICLE_IMAGE_KEYWORDS = {
     ],
     "Riding Fashion": [
         "loafer", "shoe", "leather", "horse", "bridle", "snaffle",
-        "horsebit", "fashion", "style", "equestrian",
+        "horsebit", "fashion", "style", "equestrian", "polo", "shirt",
+        "collar", "denim", "jeans", "rider", "saddle", "saddlebag",
+        "bag", "pouch", "cavalry", "cowboy",
     ],
     "Boots & Shoes": [
         "boot", "riding", "horse", "stirrup", "equestrian", "cavalry",
@@ -1062,3 +1064,166 @@ class TestImageTextCoherence:
 
         assert len(srcs) == len(set(srcs)), \
             f"{filepath} has duplicate images: {[s for s in srcs if srcs.count(s) > 1]}"
+
+
+# ===================================================================
+# 16. HOMEPAGE ARCHIVE SECTION
+# ===================================================================
+
+class TestHomepageArchive:
+    """Verify the From the Archives section on the homepage."""
+
+    def test_archive_section_exists(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="archives")
+        assert section, "Homepage must have an archives section with id='archives'"
+
+    def test_archive_has_title(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="archives")
+        title = section.select_one(".section__title") if section else None
+        assert title and "Archives" in title.text, \
+            "Archive section must have 'From the Archives' title"
+
+    def test_archive_has_date_label(self):
+        soup = _parse(INDEX)
+        section = soup.find("section", id="archives")
+        label = section.select_one(".section__label") if section else None
+        assert label and label.text.strip(), \
+            "Archive section must have a date label"
+
+    def test_archive_grid_exists(self):
+        soup = _parse(INDEX)
+        grid = soup.select_one(".archive-grid")
+        assert grid, "Homepage must have an archive-grid"
+
+    def test_archive_cards_count(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".archive-card")
+        assert len(cards) >= 5, f"Expected at least 5 archive cards, found {len(cards)}"
+
+    def test_archive_cards_have_images(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".archive-card")
+        for i, card in enumerate(cards):
+            img = card.select_one(".archive-card__image")
+            assert img, f"Archive card {i+1} must have an image"
+            src = img.get("src", "")
+            assert src, f"Archive card {i+1} image must have a src"
+
+    def test_archive_cards_have_titles(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".archive-card")
+        for i, card in enumerate(cards):
+            title = card.select_one(".archive-card__title")
+            assert title and title.text.strip(), \
+                f"Archive card {i+1} must have a title"
+
+    def test_archive_cards_have_links(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".archive-card")
+        for i, card in enumerate(cards):
+            link = card.select_one(".archive-card__link")
+            assert link, f"Archive card {i+1} must have a Read link"
+            href = link.get("href", "")
+            assert href and href != "#", \
+                f"Archive card {i+1} link must have a valid href"
+
+    def test_archive_card_links_resolve_to_existing_files(self):
+        soup = _parse(INDEX)
+        links = soup.select(".archive-card__link")
+        for link in links:
+            href = link.get("href", "")
+            if href and not href.startswith("http") and href != "#":
+                full_path = os.path.join(BASE_DIR, href)
+                assert os.path.isfile(full_path), \
+                    f"Archive link '{href}' points to non-existent file"
+
+    def test_archive_cards_have_category(self):
+        soup = _parse(INDEX)
+        cards = soup.select(".archive-card")
+        for i, card in enumerate(cards):
+            cat = card.select_one(".archive-card__category")
+            assert cat and cat.text.strip(), \
+                f"Archive card {i+1} must have a category label"
+
+    def test_today_and_archive_no_duplicate_articles(self):
+        """Today's articles and archive articles must not overlap."""
+        soup = _parse(INDEX)
+        today_links = {
+            a.get("href", "") for a in soup.select(".article-card__read-more")
+        }
+        archive_links = {
+            a.get("href", "") for a in soup.select(".archive-card__link")
+        }
+        overlap = today_links & archive_links
+        assert len(overlap) == 0, \
+            f"Articles appear in both Today and Archives: {overlap}"
+
+
+# ===================================================================
+# 17. CSS ARCHIVE STYLES
+# ===================================================================
+
+class TestCSSArchive:
+    """Verify CSS has archive card styles."""
+
+    def test_archive_grid_defined(self):
+        content = _read(CSS_FILE)
+        assert ".archive-grid" in content, "CSS must define .archive-grid"
+
+    def test_archive_card_defined(self):
+        content = _read(CSS_FILE)
+        assert ".archive-card" in content, "CSS must define .archive-card"
+
+    def test_archive_card_image_defined(self):
+        content = _read(CSS_FILE)
+        assert ".archive-card__image" in content, "CSS must define .archive-card__image"
+
+    def test_archive_card_title_defined(self):
+        content = _read(CSS_FILE)
+        assert ".archive-card__title" in content, "CSS must define .archive-card__title"
+
+
+# ===================================================================
+# 18. PUBLISHING WORKFLOW — publish_daily.py
+# ===================================================================
+
+class TestPublishingWorkflow:
+    """Verify the daily publishing script exists and has correct structure."""
+
+    SCRIPT_PATH = os.path.join(BASE_DIR, "scripts", "publish_daily.py")
+
+    def test_script_exists(self):
+        assert os.path.isfile(self.SCRIPT_PATH), \
+            "scripts/publish_daily.py must exist"
+
+    def test_script_is_importable(self):
+        """Script must be valid Python that can be parsed."""
+        import ast
+        with open(self.SCRIPT_PATH, "r") as f:
+            code = f.read()
+        try:
+            ast.parse(code)
+        except SyntaxError as e:
+            assert False, f"publish_daily.py has syntax error: {e}"
+
+    def test_script_has_required_functions(self):
+        import ast
+        with open(self.SCRIPT_PATH, "r") as f:
+            tree = ast.parse(f.read())
+        func_names = {
+            node.name for node in ast.walk(tree)
+            if isinstance(node, ast.FunctionDef)
+        }
+        required = {"publish", "read_article_metadata", "generate_article_card",
+                     "generate_archive_card", "extract_current_articles"}
+        missing = required - func_names
+        assert not missing, f"publish_daily.py missing functions: {missing}"
+
+    def test_script_has_argparse(self):
+        with open(self.SCRIPT_PATH, "r") as f:
+            content = f.read()
+        assert "argparse" in content, "Script must use argparse for CLI"
+        assert "--date" in content, "Script must accept --date argument"
+        assert "--articles" in content, "Script must accept --articles argument"
