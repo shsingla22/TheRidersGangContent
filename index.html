@@ -34,7 +34,7 @@
     <ul class="site-nav__links">
       <li><a href="#articles">Stories</a></li>
       <li><a href="#">Horse Riding</a></li>
-      <li><a href="#">Motorcycle</a></li>
+      <li><a href="#motorcycles">Motorcycles</a></li>
       <li><a href="#archives">Archives</a></li>
       <li><a href="#community">Community</a></li>
     </ul>
@@ -47,49 +47,161 @@
       <img src="assets/images/logo.svg" alt="The Rider's Gang" class="hero__logo">
       <span class="hero__tagline">Where the Saddle Meets the Street</span>
       <p class="hero__subtitle">Stories of horse riding, motorcycle culture, and the fashion born from life in motion. From nineteenth-century Paris to the mountain passes of the Himalayas.</p>
-      <a href="#articles" class="hero__cta"><span>Read Today's Stories</span></a>
+      <a href="#articles" class="hero__cta"><span>Read the Latest Stories</span></a>
     </div>
   </section>
 
   <!-- ============================================
-       TODAY'S STORIES — March 7, 2026
+       LATEST STORIES + THE PADDOCK (bike releases)
        ============================================ -->
-  <section class="section" id="articles">
-    <div class="section__header">
-      <span class="section__label">March 7, 2026</span>
-      <h2 class="section__title">Today's Stories</h2>
-      <div class="section__divider"></div>
-    </div>
+  <section class="section section--wide" id="articles">
+    <div class="content-layout">
 
-    <div class="articles-grid">
-
-      <!-- Article 1: The Wax Jacket -->
-      <article class="article-card">
-        <img class="article-card__image" src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=800&h=500&fit=crop" alt="A person in a wax jacket walking through the British countryside — the Barbour heritage" loading="lazy">
-        <div class="article-card__body">
-          <span class="article-card__category">Riding Fashion</span>
-          <h3 class="article-card__title">The Wax Jacket: How Barbour Dressed a Nation of Riders</h3>
-          <p class="article-card__excerpt">In 1894, a man in South Shields began waterproofing cotton for fishermen. A century later, his jackets would be worn by the Queen, Steve McQueen, and every horseman in Britain.</p>
-          <div class="article-card__meta">
-            <span>6 min read</span>
-            <a href="articles/the-wax-jacket-how-barbour-dressed-a-nation-of-riders.html" class="article-card__read-more">Read Story &rarr;</a>
-          </div>
+      <!-- Main column: Latest 5 stories -->
+      <div class="content-layout__main">
+        <div class="section__header">
+          <span class="section__label">Fresh from the Stable</span>
+          <h2 class="section__title">Latest Stories</h2>
+          <div class="section__divider"></div>
         </div>
-      </article>
 
-      <!-- Article 2: The Stirrup -->
-      <article class="article-card">
-        <img class="article-card__image" src="https://images.unsplash.com/photo-1598974357801-cbca100e65d3?w=800&h=500&fit=crop" alt="An equestrian rider on horseback — the stirrup that changed everything" loading="lazy">
-        <div class="article-card__body">
-          <span class="article-card__category">Equestrian Heritage</span>
-          <h3 class="article-card__title">The Stirrup: How a Simple Invention Changed the World</h3>
-          <p class="article-card__excerpt">A metal loop hanging from a saddle. It doesn't look like much. But the stirrup created knights, built empires, and changed the course of human civilisation.</p>
-          <div class="article-card__meta">
-            <span>6 min read</span>
-            <a href="articles/the-stirrup-how-a-simple-invention-changed-the-world.html" class="article-card__read-more">Read Story &rarr;</a>
-          </div>
+        <div class="articles-grid">
+
+          <!-- Article 1: The Wax Jacket — March 7 -->
+          <article class="article-card">
+            <img class="article-card__image" src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=800&h=500&fit=crop" alt="A person in a wax jacket walking through the British countryside — the Barbour heritage" loading="lazy">
+            <div class="article-card__body">
+              <span class="article-card__category">Riding Fashion</span>
+              <h3 class="article-card__title">The Wax Jacket: How Barbour Dressed a Nation of Riders</h3>
+              <p class="article-card__excerpt">In 1894, a man in South Shields began waterproofing cotton for fishermen. A century later, his jackets would be worn by the Queen, Steve McQueen, and every horseman in Britain.</p>
+              <div class="article-card__meta">
+                <span>March 7, 2026 &middot; 6 min read</span>
+                <a href="articles/the-wax-jacket-how-barbour-dressed-a-nation-of-riders.html" class="article-card__read-more">Read Story &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 2: The Stirrup — March 7 -->
+          <article class="article-card">
+            <img class="article-card__image" src="https://images.unsplash.com/photo-1598974357801-cbca100e65d3?w=800&h=500&fit=crop" alt="An equestrian rider on horseback — the stirrup that changed everything" loading="lazy">
+            <div class="article-card__body">
+              <span class="article-card__category">Equestrian Heritage</span>
+              <h3 class="article-card__title">The Stirrup: How a Simple Invention Changed the World</h3>
+              <p class="article-card__excerpt">A metal loop hanging from a saddle. It doesn't look like much. But the stirrup created knights, built empires, and changed the course of human civilisation.</p>
+              <div class="article-card__meta">
+                <span>March 7, 2026 &middot; 6 min read</span>
+                <a href="articles/the-stirrup-how-a-simple-invention-changed-the-world.html" class="article-card__read-more">Read Story &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 3: The Café Racer — March 5 -->
+          <article class="article-card">
+            <img class="article-card__image" src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=800&h=500&fit=crop" alt="A classic café racer motorcycle" loading="lazy">
+            <div class="article-card__body">
+              <span class="article-card__category">Motorcycle Culture</span>
+              <h3 class="article-card__title">The Café Racer: How Coffee Gave Birth to Motorcycle Culture</h3>
+              <p class="article-card__excerpt">In 1950s London, young riders raced from café to café before a song ended on the jukebox. They stripped their bikes for speed — and accidentally invented a culture that never died.</p>
+              <div class="article-card__meta">
+                <span>March 5, 2026 &middot; 5 min read</span>
+                <a href="articles/the-cafe-racer-how-coffee-gave-birth-to-motorcycle-culture.html" class="article-card__read-more">Read Story &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 4: The Saddlebag — March 5 -->
+          <article class="article-card">
+            <img class="article-card__image" src="https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=800&h=500&fit=crop" alt="Leather saddlebag on horseback" loading="lazy">
+            <div class="article-card__body">
+              <span class="article-card__category">Riding Fashion</span>
+              <h3 class="article-card__title">The Saddlebag: From Horse Leather to High Fashion</h3>
+              <p class="article-card__excerpt">It began as a pouch of oiled leather slung across a horse's back. Today it hangs from the shoulders of the world's most fashionable people — and its story runs through every saddle ever made.</p>
+              <div class="article-card__meta">
+                <span>March 5, 2026 &middot; 5 min read</span>
+                <a href="articles/the-saddlebag-from-horse-leather-to-high-fashion.html" class="article-card__read-more">Read Story &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 5: The Polo Shirt — March 5 -->
+          <article class="article-card">
+            <img class="article-card__image" src="https://images.unsplash.com/photo-1550126417-c0c9e38eba50?w=800&h=500&fit=crop" alt="Polo players on horseback" loading="lazy">
+            <div class="article-card__body">
+              <span class="article-card__category">Riding Fashion</span>
+              <h3 class="article-card__title">The Polo Shirt: From Horseback to High Street</h3>
+              <p class="article-card__excerpt">Born on the polo fields of colonial India and perfected on the tennis courts of France, the polo shirt is the rare garment that conquered both the stable and the street.</p>
+              <div class="article-card__meta">
+                <span>March 5, 2026 &middot; 5 min read</span>
+                <a href="articles/the-polo-shirt-from-horseback-to-high-street.html" class="article-card__read-more">Read Story &rarr;</a>
+              </div>
+            </div>
+          </article>
+
         </div>
-      </article>
+      </div>
+
+      <!-- Right sidebar: The Paddock — latest beautiful bike releases -->
+      <aside class="bike-sidebar" id="motorcycles">
+        <div class="bike-sidebar__inner">
+          <div class="bike-sidebar__header">
+            <span class="bike-sidebar__label">The Paddock</span>
+            <h2 class="bike-sidebar__title">Machines of the Moment</h2>
+            <div class="bike-sidebar__divider"></div>
+            <p class="bike-sidebar__desc">The most beautiful motorcycles released around the world — curated the way a collector curates a cabinet.</p>
+          </div>
+
+          <!-- Bike 1 -->
+          <article class="bike-card">
+            <img class="bike-card__image" src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&h=380&fit=crop" alt="Royal Enfield Classic 650 in chrome and green" loading="lazy">
+            <div class="bike-card__body">
+              <span class="bike-card__origin">India &middot; Modern Classic</span>
+              <h3 class="bike-card__name">Royal Enfield Classic 650</h3>
+              <p class="bike-card__desc">The postwar silhouette of the original Classic, carried by the smoothest parallel twin Enfield has ever built. Chrome tank, hand-striped panels — a machine that looks inherited, not bought.</p>
+            </div>
+          </article>
+
+          <!-- Bike 2 -->
+          <article class="bike-card">
+            <img class="bike-card__image" src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&h=380&fit=crop" alt="Ducati Panigale V4 in racing red" loading="lazy">
+            <div class="bike-card__body">
+              <span class="bike-card__origin">Italy &middot; Superbike</span>
+              <h3 class="bike-card__name">Ducati Panigale V4</h3>
+              <p class="bike-card__desc">Bologna's latest masterwork — a sculpture that happens to produce over 200 horsepower. The seventh generation refines the aluminium monocoque into something close to jewellery.</p>
+            </div>
+          </article>
+
+          <!-- Bike 3 -->
+          <article class="bike-card">
+            <img class="bike-card__image" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=380&fit=crop" alt="BMW R 12 nineT roadster" loading="lazy">
+            <div class="bike-card__body">
+              <span class="bike-card__origin">Germany &middot; Heritage Roadster</span>
+              <h3 class="bike-card__name">BMW R 12 nineT</h3>
+              <p class="bike-card__desc">Bavaria's love letter to its own history. The boxer twin sits in the frame like an heirloom watch in a display case — engineering as quiet confidence.</p>
+            </div>
+          </article>
+
+          <!-- Bike 4 -->
+          <article class="bike-card">
+            <img class="bike-card__image" src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&h=380&fit=crop" alt="Triumph Speed Twin 1200 RS" loading="lazy">
+            <div class="bike-card__body">
+              <span class="bike-card__origin">Britain &middot; Modern Classic</span>
+              <h3 class="bike-card__name">Triumph Speed Twin 1200 RS</h3>
+              <p class="bike-card__desc">Hinckley's finest hour — the 1938 Speed Twin name reborn with Öhlins suspension and brushed aluminium. Old money styling, new money performance.</p>
+            </div>
+          </article>
+
+          <!-- Bike 5 -->
+          <article class="bike-card">
+            <img class="bike-card__image" src="https://images.unsplash.com/photo-1547549082-6bc09f2049ae?w=600&h=380&fit=crop" alt="Norton Commando 961 café racer" loading="lazy">
+            <div class="bike-card__body">
+              <span class="bike-card__origin">Britain &middot; Hand-Built</span>
+              <h3 class="bike-card__name">Norton Commando 961</h3>
+              <p class="bike-card__desc">Hand-assembled in Solihull, polished like regimental silver. The 961 is not transportation — it is a family portrait that happens to start on the first kick.</p>
+            </div>
+          </article>
+
+        </div>
+      </aside>
 
     </div>
   </section>
@@ -118,44 +230,11 @@
       <div class="archive-group__header" onclick="this.parentElement.classList.toggle('collapsed')">
         <span class="archive-group__date">March 5, 2026</span>
         <span class="archive-group__line"></span>
-        <span class="archive-group__count">5 stories</span>
+        <span class="archive-group__count">2 stories</span>
         <span class="archive-group__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
       </div>
       <div class="archive-group__content">
         <div class="archive-grid">
-          <article class="archive-card">
-            <img class="archive-card__image" src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=400&h=250&fit=crop" alt="The Café Racer" loading="lazy">
-            <div class="archive-card__body">
-              <span class="archive-card__category">Motorcycle Culture</span>
-              <h3 class="archive-card__title">The Café Racer: How Coffee Gave Birth to Motorcycle Culture</h3>
-              <div class="archive-card__meta">
-                <span>5 min read</span>
-                <a href="articles/the-cafe-racer-how-coffee-gave-birth-to-motorcycle-culture.html" class="archive-card__link">Read &rarr;</a>
-              </div>
-            </div>
-          </article>
-          <article class="archive-card">
-            <img class="archive-card__image" src="https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=400&h=250&fit=crop" alt="The Saddlebag" loading="lazy">
-            <div class="archive-card__body">
-              <span class="archive-card__category">Riding Fashion</span>
-              <h3 class="archive-card__title">The Saddlebag: From Horse Leather to High Fashion</h3>
-              <div class="archive-card__meta">
-                <span>5 min read</span>
-                <a href="articles/the-saddlebag-from-horse-leather-to-high-fashion.html" class="archive-card__link">Read &rarr;</a>
-              </div>
-            </div>
-          </article>
-          <article class="archive-card">
-            <img class="archive-card__image" src="https://images.unsplash.com/photo-1550126417-c0c9e38eba50?w=400&h=250&fit=crop" alt="The Polo Shirt" loading="lazy">
-            <div class="archive-card__body">
-              <span class="archive-card__category">Riding Fashion</span>
-              <h3 class="archive-card__title">The Polo Shirt: From Horseback to High Street</h3>
-              <div class="archive-card__meta">
-                <span>5 min read</span>
-                <a href="articles/the-polo-shirt-from-horseback-to-high-street.html" class="archive-card__link">Read &rarr;</a>
-              </div>
-            </div>
-          </article>
           <article class="archive-card">
             <img class="archive-card__image" src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=250&fit=crop" alt="Denim and the Rider" loading="lazy">
             <div class="archive-card__body">

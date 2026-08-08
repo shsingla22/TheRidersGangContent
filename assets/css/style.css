@@ -565,6 +565,214 @@ a:hover {
   font-size: 1rem;
 }
 
+/* --- Two-Column Layout: Latest Stories + The Paddock --- */
+.section--wide {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.content-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* --- The Paddock (Bike Releases Sidebar) --- */
+/* A collector's display cabinet: dark hunter green, brass trim, leather texture */
+.bike-sidebar {
+  background: var(--color-midnight);
+  background-image: var(--texture-grain-dark), var(--texture-linen);
+  background-size: 200px 200px, 16px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(184, 150, 62, 0.25);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(184, 150, 62, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Brass rail across the cabinet top */
+.bike-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--color-gold), var(--color-gold-light), var(--color-gold), transparent);
+}
+
+/* Saddle-stitch inner border — like a leather-lined case */
+.bike-sidebar::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px dashed rgba(184, 150, 62, 0.15);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.bike-sidebar__inner {
+  padding: 2.25rem 1.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.bike-sidebar__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.bike-sidebar__label {
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.bike-sidebar__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-cream);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.bike-sidebar__divider {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+  margin: 0.75rem auto 1rem;
+  position: relative;
+}
+
+.bike-sidebar__divider::before {
+  content: '\2726';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.7rem;
+  color: var(--color-gold);
+  background: var(--color-midnight);
+  padding: 0 0.6rem;
+  line-height: 1;
+}
+
+.bike-sidebar__desc {
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(244, 240, 228, 0.65);
+  line-height: 1.6;
+}
+
+/* --- Bike Cards — framed like portraits in the cabinet --- */
+.bike-card {
+  background: rgba(61, 43, 31, 0.35);
+  background-image: var(--texture-canvas);
+  background-size: 20px 20px;
+  border: 1px solid rgba(184, 150, 62, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  transition: var(--transition-smooth);
+}
+
+.bike-card:last-child {
+  margin-bottom: 0;
+}
+
+.bike-card:hover {
+  border-color: rgba(184, 150, 62, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.bike-card__image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  filter: saturate(0.75) contrast(1.05) sepia(0.15);
+  transition: filter 0.5s ease;
+  border-bottom: 1px solid rgba(184, 150, 62, 0.2);
+}
+
+.bike-card:hover .bike-card__image {
+  filter: saturate(0.95) contrast(1.02) sepia(0.05);
+}
+
+.bike-card__body {
+  padding: 1.1rem 1.25rem 1.3rem;
+}
+
+.bike-card__origin {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.bike-card__name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-cream);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.bike-card__desc {
+  font-size: 0.83rem;
+  color: rgba(244, 240, 228, 0.6);
+  line-height: 1.65;
+}
+
+/* Responsive: stack sidebar below stories on narrower screens */
+@media (max-width: 1100px) {
+  .content-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .bike-sidebar {
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* On tablet, show bikes in a 2-up grid inside the cabinet */
+  .bike-sidebar__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .bike-sidebar__header {
+    grid-column: 1 / -1;
+    margin-bottom: 0.5rem;
+  }
+
+  .bike-card {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .bike-sidebar__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* --- Mission Section --- */
 .mission-section {
   background: var(--color-midnight);
