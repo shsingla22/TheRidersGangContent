@@ -735,6 +735,25 @@ a:hover {
   font-size: 0.83rem;
   color: rgba(244, 240, 228, 0.6);
   line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+
+.bike-card__link {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold) !important;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(184, 150, 62, 0.15);
+  width: 100%;
+  transition: var(--transition-smooth);
+}
+
+.bike-card__link:hover {
+  color: var(--color-gold-light) !important;
+  letter-spacing: 0.16em;
 }
 
 /* Responsive: stack sidebar below stories on narrower screens */

@@ -1,0 +1,86 @@
+{
+  "section": {
+    "id": "motorcycles",
+    "label": "The Paddock",
+    "title": "Machines of the Moment",
+    "description": "The most beautiful motorcycles released around the world — curated the way a collector curates a cabinet.",
+    "lastUpdated": "2026-03-07"
+  },
+  "motorcycles": [
+    {
+      "id": "royal-enfield-classic-650",
+      "name": "Royal Enfield Classic 650",
+      "manufacturer": "Royal Enfield",
+      "origin": "India",
+      "type": "Modern Classic",
+      "launched": "2024 (EICMA / Motoverse), on sale 2025",
+      "engine": "648cc air/oil-cooled parallel twin",
+      "description": "The postwar silhouette of the original Classic, carried by the smoothest parallel twin Enfield has ever built. Chrome tank, hand-striped panels — a machine that looks inherited, not bought.",
+      "image": "assets/images/bikes/royal-enfield-classic-650.jpg",
+      "imageSource": "Official Royal Enfield product gallery (royalenfield.com), Classic 650 in Teal",
+      "imageVerified": true,
+      "moreInfoUrl": "https://www.royalenfield.com/in/en/motorcycles/classic-650/",
+      "moreInfoLabel": "royalenfield.com"
+    },
+    {
+      "id": "ducati-panigale-v4",
+      "name": "Ducati Panigale V4",
+      "manufacturer": "Ducati",
+      "origin": "Italy",
+      "type": "Superbike",
+      "launched": "2025 model year (seventh generation)",
+      "engine": "1103cc Desmosedici Stradale V4",
+      "description": "Bologna's latest masterwork — a sculpture that happens to produce over 200 horsepower. The seventh generation refines the aluminium monocoque into something close to jewellery.",
+      "image": "assets/images/bikes/ducati-panigale-v4.jpg",
+      "imageSource": "Wikimedia Commons: 'Ducati Panigale V4S 2025.jpg' by AVMOTO, CC BY-SA 4.0",
+      "imageVerified": true,
+      "moreInfoUrl": "https://en.wikipedia.org/wiki/Ducati_Panigale_V4",
+      "moreInfoLabel": "Wikipedia"
+    },
+    {
+      "id": "bmw-r12-ninet",
+      "name": "BMW R 12 nineT",
+      "manufacturer": "BMW Motorrad",
+      "origin": "Germany",
+      "type": "Heritage Roadster",
+      "launched": "2024",
+      "engine": "1170cc air/oil-cooled boxer twin",
+      "description": "Bavaria's love letter to its own history. The boxer twin sits in the frame like an heirloom watch in a display case — engineering as quiet confidence.",
+      "image": "assets/images/bikes/bmw-r12-ninet.jpg",
+      "imageSource": "Wikimedia Commons: '2024-06 BMW R12-nineT right.jpg' by Wikisympathisant, CC BY-SA 4.0",
+      "imageVerified": true,
+      "moreInfoUrl": "https://en.wikipedia.org/wiki/BMW_R_nineT",
+      "moreInfoLabel": "Wikipedia"
+    },
+    {
+      "id": "moto-guzzi-v7-special",
+      "name": "Moto Guzzi V7 Special",
+      "manufacturer": "Moto Guzzi",
+      "origin": "Italy",
+      "type": "Modern Classic",
+      "launched": "2025 model year",
+      "engine": "853cc transverse 90° V-twin",
+      "description": "Built on the shores of Lake Como since 1921 — the oldest motorcycle factory in continuous operation. The V7's transverse twin is Italian craft at its most unhurried and assured.",
+      "image": "assets/images/bikes/moto-guzzi-v7-special.jpg",
+      "imageSource": "Wikimedia Commons: 'Moto Guzzi V7 Special 850 2025.jpg', CC BY-SA 4.0",
+      "imageVerified": true,
+      "moreInfoUrl": "https://en.wikipedia.org/wiki/Moto_Guzzi_V7",
+      "moreInfoLabel": "Wikipedia"
+    },
+    {
+      "id": "norton-commando-961",
+      "name": "Norton Commando 961",
+      "manufacturer": "Norton Motorcycles",
+      "origin": "Britain",
+      "type": "Hand-Built Café Racer",
+      "launched": "Relaunched 2023 under TVS ownership",
+      "engine": "961cc air-cooled parallel twin",
+      "description": "Hand-assembled in Solihull, polished like regimental silver. The 961 is not transportation — it is a family portrait that happens to start on the first press.",
+      "image": "assets/images/bikes/norton-commando-961.jpg",
+      "imageSource": "Wikimedia Commons: 'Norton Commando 961 Sport.jpg', CC BY-SA 2.0",
+      "imageVerified": true,
+      "moreInfoUrl": "https://www.nortonmotorcycles.com/motorcycles/commando-961/",
+      "moreInfoLabel": "nortonmotorcycles.com"
+    }
+  ]
+}
