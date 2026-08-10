@@ -40,32 +40,64 @@
     </ul>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- Hero Section — brand left, Machine of the Moment right -->
+  <section class="hero hero--split">
     <div class="hero__border-fade"></div>
     <div class="hero__content">
-      <img src="assets/images/logo.svg" alt="The Rider's Gang" class="hero__logo">
-      <span class="hero__tagline">Where the Saddle Meets the Street</span>
-      <p class="hero__subtitle">Stories of horse riding, motorcycle culture, and the fashion born from life in motion. From nineteenth-century Paris to the mountain passes of the Himalayas.</p>
-      <a href="#articles" class="hero__cta"><span>Read the Latest Stories</span></a>
+      <div class="hero__brand-col">
+        <img src="assets/images/logo.svg" alt="The Rider's Gang" class="hero__logo">
+        <span class="hero__tagline">Where the Saddle Meets the Street</span>
+        <p class="hero__subtitle">Stories of horse riding, motorcycle culture, and the fashion born from life in motion. From nineteenth-century Paris to the mountain passes of the Himalayas.</p>
+        <a href="#articles" class="hero__cta"><span>Read the Latest Stories</span></a>
+      </div>
+      <div class="hero__machine">
+        <img src="assets/images/bikes/royal-enfield-classic-650.jpg" alt="Royal Enfield Classic 650 — Machine of the Moment">
+        <div class="hero__machine-body">
+          <span class="hero__machine-label">The Paddock &middot; Machine of the Moment</span>
+          <h2 class="hero__machine-name">Royal Enfield Classic 650</h2>
+          <p class="hero__machine-desc">The postwar silhouette of the original Classic, carried by the smoothest parallel twin Enfield has ever built.</p>
+          <a href="https://www.royalenfield.com/in/en/motorcycles/classic-650/" class="hero__machine-link" target="_blank" rel="noopener">More at royalenfield.com &rarr;</a>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Paddock Rail — the rest of the stable -->
+  <div class="paddock-rail" id="motorcycles">
+    <div class="paddock-rail__inner">
+      <span class="paddock-rail__label">Also in the Paddock</span>
+      <div class="paddock-rail__cards">
+        <a class="rail-card" href="https://en.wikipedia.org/wiki/Ducati_Panigale_V4" target="_blank" rel="noopener">
+          <img src="assets/images/bikes/ducati-panigale-v4.jpg" alt="Ducati Panigale V4" loading="lazy">
+          <span><em>Italy</em><strong>Ducati Panigale V4</strong></span>
+        </a>
+        <a class="rail-card" href="https://en.wikipedia.org/wiki/BMW_R_nineT" target="_blank" rel="noopener">
+          <img src="assets/images/bikes/bmw-r12-ninet.jpg" alt="BMW R 12 nineT" loading="lazy">
+          <span><em>Germany</em><strong>BMW R 12 nineT</strong></span>
+        </a>
+        <a class="rail-card" href="https://en.wikipedia.org/wiki/Moto_Guzzi_V7" target="_blank" rel="noopener">
+          <img src="assets/images/bikes/moto-guzzi-v7-special.jpg" alt="Moto Guzzi V7 Special" loading="lazy">
+          <span><em>Italy</em><strong>Moto Guzzi V7 Special</strong></span>
+        </a>
+        <a class="rail-card" href="https://www.nortonmotorcycles.com/motorcycles/commando-961/" target="_blank" rel="noopener">
+          <img src="assets/images/bikes/norton-commando-961.jpg" alt="Norton Commando 961" loading="lazy">
+          <span><em>Britain</em><strong>Norton Commando 961</strong></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- ============================================
-       LATEST STORIES + THE PADDOCK (bike releases)
+       LATEST STORIES
        ============================================ -->
-  <section class="section section--wide" id="articles">
-    <div class="content-layout">
+  <section class="section" id="articles">
+    <div class="section__header">
+      <span class="section__label">Fresh from the Stable</span>
+      <h2 class="section__title">Latest Stories</h2>
+      <div class="section__divider"></div>
+    </div>
 
-      <!-- Main column: Latest 5 stories -->
-      <div class="content-layout__main">
-        <div class="section__header">
-          <span class="section__label">Fresh from the Stable</span>
-          <h2 class="section__title">Latest Stories</h2>
-          <div class="section__divider"></div>
-        </div>
-
-        <div class="articles-grid">
+    <div class="articles-grid">
 
           <!-- Article 1: The Wax Jacket — March 7 -->
           <article class="article-card">
@@ -136,77 +168,6 @@
               </div>
             </div>
           </article>
-
-        </div>
-      </div>
-
-      <!-- Right sidebar: The Paddock — latest beautiful bike releases -->
-      <aside class="bike-sidebar" id="motorcycles">
-        <div class="bike-sidebar__inner">
-          <div class="bike-sidebar__header">
-            <span class="bike-sidebar__label">The Paddock</span>
-            <h2 class="bike-sidebar__title">Machines of the Moment</h2>
-            <div class="bike-sidebar__divider"></div>
-            <p class="bike-sidebar__desc">The most beautiful motorcycles released around the world — curated the way a collector curates a cabinet.</p>
-          </div>
-
-          <!-- Bike 1: Royal Enfield Classic 650 -->
-          <article class="bike-card">
-            <img class="bike-card__image" src="assets/images/bikes/royal-enfield-classic-650.jpg" alt="Royal Enfield Classic 650 in Teal — official launch colour" loading="lazy">
-            <div class="bike-card__body">
-              <span class="bike-card__origin">India &middot; Modern Classic</span>
-              <h3 class="bike-card__name">Royal Enfield Classic 650</h3>
-              <p class="bike-card__desc">The postwar silhouette of the original Classic, carried by the smoothest parallel twin Enfield has ever built. Chrome tank, hand-striped panels — a machine that looks inherited, not bought.</p>
-              <a href="https://www.royalenfield.com/in/en/motorcycles/classic-650/" class="bike-card__link" target="_blank" rel="noopener">More at royalenfield.com &rarr;</a>
-            </div>
-          </article>
-
-          <!-- Bike 2: Ducati Panigale V4 -->
-          <article class="bike-card">
-            <img class="bike-card__image" src="assets/images/bikes/ducati-panigale-v4.jpg" alt="Ducati Panigale V4 S 2025 in Ducati Red" loading="lazy">
-            <div class="bike-card__body">
-              <span class="bike-card__origin">Italy &middot; Superbike</span>
-              <h3 class="bike-card__name">Ducati Panigale V4</h3>
-              <p class="bike-card__desc">Bologna's latest masterwork — a sculpture that happens to produce over 200 horsepower. The seventh generation refines the aluminium monocoque into something close to jewellery.</p>
-              <a href="https://en.wikipedia.org/wiki/Ducati_Panigale_V4" class="bike-card__link" target="_blank" rel="noopener">More on Wikipedia &rarr;</a>
-            </div>
-          </article>
-
-          <!-- Bike 3: BMW R 12 nineT -->
-          <article class="bike-card">
-            <img class="bike-card__image" src="assets/images/bikes/bmw-r12-ninet.jpg" alt="BMW R 12 nineT 2024 in green and silver" loading="lazy">
-            <div class="bike-card__body">
-              <span class="bike-card__origin">Germany &middot; Heritage Roadster</span>
-              <h3 class="bike-card__name">BMW R 12 nineT</h3>
-              <p class="bike-card__desc">Bavaria's love letter to its own history. The boxer twin sits in the frame like an heirloom watch in a display case — engineering as quiet confidence.</p>
-              <a href="https://en.wikipedia.org/wiki/BMW_R_nineT" class="bike-card__link" target="_blank" rel="noopener">More on Wikipedia &rarr;</a>
-            </div>
-          </article>
-
-          <!-- Bike 4: Moto Guzzi V7 Special -->
-          <article class="bike-card">
-            <img class="bike-card__image" src="assets/images/bikes/moto-guzzi-v7-special.jpg" alt="Moto Guzzi V7 Special 850, 2025 model" loading="lazy">
-            <div class="bike-card__body">
-              <span class="bike-card__origin">Italy &middot; Modern Classic</span>
-              <h3 class="bike-card__name">Moto Guzzi V7 Special</h3>
-              <p class="bike-card__desc">Built on the shores of Lake Como since 1921 — the oldest motorcycle factory in continuous operation. The V7's transverse twin is Italian craft at its most unhurried and assured.</p>
-              <a href="https://en.wikipedia.org/wiki/Moto_Guzzi_V7" class="bike-card__link" target="_blank" rel="noopener">More on Wikipedia &rarr;</a>
-            </div>
-          </article>
-
-          <!-- Bike 5: Norton Commando 961 -->
-          <article class="bike-card">
-            <img class="bike-card__image" src="assets/images/bikes/norton-commando-961.jpg" alt="Norton Commando 961 Sport in silver" loading="lazy">
-            <div class="bike-card__body">
-              <span class="bike-card__origin">Britain &middot; Hand-Built</span>
-              <h3 class="bike-card__name">Norton Commando 961</h3>
-              <p class="bike-card__desc">Hand-assembled in Solihull, polished like regimental silver. The 961 is not transportation — it is a family portrait that happens to start on the first press.</p>
-              <a href="https://www.nortonmotorcycles.com/motorcycles/commando-961/" class="bike-card__link" target="_blank" rel="noopener">More at nortonmotorcycles.com &rarr;</a>
-            </div>
-          </article>
-
-        </div>
-      </aside>
 
     </div>
   </section>

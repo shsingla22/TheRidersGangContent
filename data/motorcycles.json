@@ -4,7 +4,10 @@
     "label": "The Paddock",
     "title": "Machines of the Moment",
     "description": "The most beautiful motorcycles released around the world — curated the way a collector curates a cabinet.",
-    "lastUpdated": "2026-03-07"
+    "lastUpdated": "2026-03-07",
+    "machineOfTheMoment": "royal-enfield-classic-650",
+    "presentation": "split-hero",
+    "note": "The machineOfTheMoment id is featured in the homepage hero; the remaining motorcycles appear in the paddock rail beneath it."
   },
   "motorcycles": [
     {
