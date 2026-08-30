@@ -1,0 +1,345 @@
+{
+  "$schema": {
+    "version": "2.0",
+    "name": "The Paddock — Machine Repository",
+    "purpose": "Canonical, growing record of every machine covered in The Paddock: premium, beautiful and powerful motorcycles and cars. This file is the single source of truth. The homepage hero, the paddock rail, machines.html and every article in articles/machines/ are all presentations of the records below.",
+    "supersedes": "data/motorcycles.json (v1, motorcycles only — removed in v2)",
+    "howToAddAMachine": [
+      "1. Add a record to `machines` below, following the field contract.",
+      "2. Save a verified image of the ACTUAL model to assets/images/bikes/ or assets/images/cars/ and record its source and licence.",
+      "3. Write the article from scripts/machine-article-template.html into articles/machines/<slug>.html.",
+      "4. Add a card to machines.html.",
+      "5. To feature it on the homepage, set its id as section.machineOfTheMoment.",
+      "6. Run: python3 -m pytest tests/ -q"
+    ],
+    "fieldContract": {
+      "id": "Stable kebab-case identifier. Never change once published.",
+      "kind": "'motorcycle' or 'car'.",
+      "image": "Repo-relative path. Image MUST be of the actual named model and visually verified before commit.",
+      "imageVerified": "true only after a human or agent has actually looked at the image and confirmed the model.",
+      "article": "Repo-relative path to the long-form article.",
+      "pricing.indicative": "Approximate figures only. See pricingDisclaimer.",
+      "sourcing": "Per-market availability. 'availability' must be honest, including when a machine is not officially sold in a market."
+    },
+    "pricingDisclaimer": "All prices are indicative and approximate as of early 2026. Actual prices vary by market, specification, options, dealer, local taxes and import duties, and change without notice. Figures are given to convey order of magnitude, not to quote a transaction. Always confirm with an official dealer.",
+    "editorialRule": "The content in this section must never be wrong. Prefer a qualitative statement over an uncertain number. Never invent dealer names, stock figures, or quotes attributed to real people."
+  },
+
+  "section": {
+    "id": "motorcycles",
+    "label": "The Paddock",
+    "title": "Machines of the Moment",
+    "description": "The most beautiful and most powerful machines in the world — motorcycles and cars — each with the full story behind it.",
+    "indexPage": "machines.html",
+    "machineOfTheMoment": "royal-enfield-classic-650",
+    "presentation": "split-hero",
+    "lastUpdated": "2026-03-08"
+  },
+
+  "machines": [
+    {
+      "id": "royal-enfield-classic-650",
+      "kind": "motorcycle",
+      "name": "Royal Enfield Classic 650",
+      "manufacturer": "Royal Enfield",
+      "origin": "Chennai, India",
+      "country": "India",
+      "type": "Modern Classic",
+      "launched": "Unveiled 2024 (EICMA / Motoverse); on sale from 2025",
+      "engine": "648cc air/oil-cooled parallel twin",
+      "power": "Approx. 47 bhp",
+      "cardDescription": "The postwar silhouette of the original Classic, carried by the smoothest parallel twin Enfield has ever built. Chrome tank, hand-striped panels — a machine that looks inherited, not bought.",
+      "image": "assets/images/bikes/royal-enfield-classic-650.jpg",
+      "imageSource": "Official Royal Enfield product gallery (royalenfield.com), Classic 650 in Teal",
+      "imageLicence": "Manufacturer press/product imagery, used editorially",
+      "imageVerified": true,
+      "article": "articles/machines/royal-enfield-classic-650.html",
+      "moreInfoUrl": "https://www.royalenfield.com/in/en/motorcycles/classic-650/",
+      "moreInfoLabel": "royalenfield.com",
+      "pricing": {
+        "indicative": "From approx. ₹3.5 lakh / £6,000 / $7,000",
+        "note": "The most attainable machine in The Paddock — deliberately so."
+      },
+      "sourcing": [
+        { "market": "India", "availability": "Widely available through Royal Enfield's national dealer network", "indicativePrice": "≈ ₹3.4–3.7 lakh ex-showroom" },
+        { "market": "United Kingdom", "availability": "Official Royal Enfield dealers nationwide", "indicativePrice": "≈ £6,000–6,500" },
+        { "market": "United States", "availability": "Official dealer network, growing steadily", "indicativePrice": "≈ $6,999–7,500" },
+        { "market": "Europe", "availability": "Official dealers across most EU markets", "indicativePrice": "≈ €6,800–7,400" },
+        { "market": "Australia", "availability": "Official importer and dealer network", "indicativePrice": "≈ A$11,500–12,500 ride-away" },
+        { "market": "UAE", "availability": "Official distributor in Dubai and Abu Dhabi", "indicativePrice": "≈ AED 30,000–34,000" }
+      ],
+      "uniquePoints": [
+        "Royal Enfield is the oldest motorcycle brand in continuous production, dating to 1901.",
+        "Hand-applied pinstriping on the tank — a human hand touches every bike.",
+        "Offers genuine period looks at roughly a fifth the price of its European heritage rivals."
+      ],
+      "publishedDate": "2026-03-08"
+    },
+    {
+      "id": "ducati-panigale-v4",
+      "kind": "motorcycle",
+      "name": "Ducati Panigale V4",
+      "manufacturer": "Ducati",
+      "origin": "Borgo Panigale, Bologna, Italy",
+      "country": "Italy",
+      "type": "Superbike",
+      "launched": "2025 model year (latest generation)",
+      "engine": "1103cc Desmosedici Stradale V4",
+      "power": "Over 200 hp",
+      "cardDescription": "Bologna's latest masterwork — a sculpture that happens to produce over 200 horsepower. The aluminium monocoque refined into something close to jewellery.",
+      "image": "assets/images/bikes/ducati-panigale-v4.jpg",
+      "imageSource": "Wikimedia Commons: 'Ducati Panigale V4S 2025.jpg' by AVMOTO",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageVerified": true,
+      "article": "articles/machines/ducati-panigale-v4.html",
+      "moreInfoUrl": "https://en.wikipedia.org/wiki/Ducati_Panigale_V4",
+      "moreInfoLabel": "Wikipedia",
+      "pricing": {
+        "indicative": "From approx. €28,000 / $25,000 / ₹30 lakh",
+        "note": "S and R specifications carry a substantial premium over the base machine."
+      },
+      "sourcing": [
+        { "market": "Italy / Europe", "availability": "Full Ducati dealer network", "indicativePrice": "≈ €28,000–36,000" },
+        { "market": "United Kingdom", "availability": "Official Ducati dealers", "indicativePrice": "≈ £23,000–30,000" },
+        { "market": "United States", "availability": "Official Ducati North America dealers", "indicativePrice": "≈ $25,000–35,000" },
+        { "market": "India", "availability": "Ducati India dealerships in major metros; CBU import", "indicativePrice": "≈ ₹30–35 lakh ex-showroom" },
+        { "market": "Australia", "availability": "Official Ducati dealers", "indicativePrice": "≈ A$40,000+ ride-away" },
+        { "market": "UAE", "availability": "Official distributor, Dubai and Abu Dhabi", "indicativePrice": "≈ AED 110,000+" }
+      ],
+      "uniquePoints": [
+        "Desmodromic valve actuation — valves are closed mechanically, not by springs. Ducati is effectively alone in using it on road bikes.",
+        "Counter-rotating crankshaft, borrowed directly from Ducati's MotoGP programme.",
+        "Named after Borgo Panigale, the Bologna district where every Ducati is built."
+      ],
+      "publishedDate": "2026-03-08"
+    },
+    {
+      "id": "bmw-r12-ninet",
+      "kind": "motorcycle",
+      "name": "BMW R 12 nineT",
+      "manufacturer": "BMW Motorrad",
+      "origin": "Berlin, Germany",
+      "country": "Germany",
+      "type": "Heritage Roadster",
+      "launched": "2024",
+      "engine": "1170cc air/oil-cooled boxer twin",
+      "power": "Approx. 109 hp",
+      "cardDescription": "Bavaria's love letter to its own history. The boxer twin sits in the frame like an heirloom watch in a display case — engineering as quiet confidence.",
+      "image": "assets/images/bikes/bmw-r12-ninet.jpg",
+      "imageSource": "Wikimedia Commons: '2024-06 BMW R12-nineT right.jpg' by Wikisympathisant",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageVerified": true,
+      "article": "articles/machines/bmw-r12-ninet.html",
+      "moreInfoUrl": "https://en.wikipedia.org/wiki/BMW_R_nineT",
+      "moreInfoLabel": "Wikipedia",
+      "pricing": {
+        "indicative": "From approx. $16,000 / £12,500 / €16,000",
+        "note": "Option 719 finishes and billet packs raise the figure considerably."
+      },
+      "sourcing": [
+        { "market": "Germany / Europe", "availability": "Full BMW Motorrad dealer network", "indicativePrice": "≈ €16,000–18,500" },
+        { "market": "United Kingdom", "availability": "Official BMW Motorrad dealers", "indicativePrice": "≈ £12,500–14,500" },
+        { "market": "United States", "availability": "Official BMW Motorrad USA dealers", "indicativePrice": "≈ $16,000–17,500" },
+        { "market": "India", "availability": "BMW Motorrad India, CBU import; limited dealer footprint", "indicativePrice": "≈ ₹20–23 lakh ex-showroom" },
+        { "market": "Australia", "availability": "Official BMW Motorrad dealers", "indicativePrice": "≈ A$26,000–29,000 ride-away" },
+        { "market": "Japan", "availability": "Official BMW Motorrad Japan dealers", "indicativePrice": "≈ ¥2.5–2.8 million" }
+      ],
+      "uniquePoints": [
+        "The boxer twin layout has been a BMW constant since the R 32 of 1923 — over a century of the same architecture.",
+        "The flat twin's low centre of gravity is a genuine handling advantage, not a styling accident.",
+        "Designed from the outset to be customised; BMW publishes the bike as a platform."
+      ],
+      "publishedDate": "2026-03-08"
+    },
+    {
+      "id": "moto-guzzi-v7-special",
+      "kind": "motorcycle",
+      "name": "Moto Guzzi V7 Special",
+      "manufacturer": "Moto Guzzi",
+      "origin": "Mandello del Lario, Italy",
+      "country": "Italy",
+      "type": "Modern Classic",
+      "launched": "2025 model year",
+      "engine": "853cc transverse 90° V-twin",
+      "power": "Approx. 65 hp",
+      "cardDescription": "Built on the shores of Lake Como since 1921 — the oldest European motorcycle factory in continuous operation. Italian craft at its most unhurried.",
+      "image": "assets/images/bikes/moto-guzzi-v7-special.jpg",
+      "imageSource": "Wikimedia Commons: 'Moto Guzzi V7 Special 850 2025.jpg'",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageVerified": true,
+      "article": "articles/machines/moto-guzzi-v7-special.html",
+      "moreInfoUrl": "https://en.wikipedia.org/wiki/Moto_Guzzi_V7",
+      "moreInfoLabel": "Wikipedia",
+      "pricing": {
+        "indicative": "From approx. $9,500 / £8,500 / €9,500",
+        "note": "Among the most affordable ways into genuine European motorcycling heritage."
+      },
+      "sourcing": [
+        { "market": "Italy / Europe", "availability": "Full Moto Guzzi dealer network", "indicativePrice": "≈ €9,200–10,500" },
+        { "market": "United Kingdom", "availability": "Official Moto Guzzi dealers", "indicativePrice": "≈ £8,300–9,300" },
+        { "market": "United States", "availability": "Official dealers; footprint smaller than Japanese rivals", "indicativePrice": "≈ $9,300–10,500" },
+        { "market": "Australia", "availability": "Official importer network", "indicativePrice": "≈ A$16,000–18,000 ride-away" },
+        { "market": "India", "availability": "Not officially sold; grey import only", "indicativePrice": "Not officially priced" },
+        { "market": "Japan", "availability": "Official Piaggio Group Japan distribution", "indicativePrice": "≈ ¥1.4–1.6 million" }
+      ],
+      "uniquePoints": [
+        "The transverse V-twin places both cylinders directly in the airstream — a layout almost unique to Moto Guzzi.",
+        "Still built in the original Mandello del Lario factory, in operation since 1921.",
+        "The eagle emblem honours Giovanni Ravelli, a founding partner who died before the company began."
+      ],
+      "publishedDate": "2026-03-08"
+    },
+    {
+      "id": "norton-commando-961",
+      "kind": "motorcycle",
+      "name": "Norton Commando 961",
+      "manufacturer": "Norton Motorcycles",
+      "origin": "Solihull, England",
+      "country": "United Kingdom",
+      "type": "Hand-Built Café Racer",
+      "launched": "Relaunched 2023 under TVS Motor Company ownership",
+      "engine": "961cc air-cooled parallel twin",
+      "power": "Approx. 77 hp",
+      "cardDescription": "Hand-assembled in Solihull, polished like regimental silver. Not transportation — a family portrait that happens to start on the first press.",
+      "image": "assets/images/bikes/norton-commando-961.jpg",
+      "imageSource": "Wikimedia Commons: 'Norton Commando 961 Sport.jpg'",
+      "imageLicence": "CC BY-SA 2.0",
+      "imageVerified": true,
+      "article": "articles/machines/norton-commando-961.html",
+      "moreInfoUrl": "https://www.nortonmotorcycles.com/motorcycles/commando-961/",
+      "moreInfoLabel": "nortonmotorcycles.com",
+      "pricing": {
+        "indicative": "From approx. £16,000 / $20,000",
+        "note": "Priced against craft and rarity rather than against its performance figures."
+      },
+      "sourcing": [
+        { "market": "United Kingdom", "availability": "Norton's own dealer network; home market, best availability", "indicativePrice": "≈ £16,000–18,000" },
+        { "market": "Europe", "availability": "Selected dealers in a limited number of markets", "indicativePrice": "≈ €19,000–22,000" },
+        { "market": "United States", "availability": "Very limited; check current Norton distribution before committing", "indicativePrice": "≈ $20,000+ where available" },
+        { "market": "India", "availability": "Limited; Norton is owned by TVS Motor Company, so presence is expected to grow", "indicativePrice": "Confirm with distributor" },
+        { "market": "Australia", "availability": "Limited official presence", "indicativePrice": "Confirm with distributor" },
+        { "market": "Japan", "availability": "Specialist importers only", "indicativePrice": "Confirm with importer" }
+      ],
+      "uniquePoints": [
+        "Norton traces to 1898 — one of the oldest names in motorcycling.",
+        "The original 1967 Commando's Isolastic system rubber-mounted the engine to tame parallel-twin vibration, a genuine engineering innovation.",
+        "Built in very small numbers by hand; each machine is effectively individually assembled."
+      ],
+      "publishedDate": "2026-03-08"
+    },
+    {
+      "id": "ferrari-12cilindri",
+      "kind": "car",
+      "name": "Ferrari 12Cilindri",
+      "manufacturer": "Ferrari",
+      "origin": "Maranello, Italy",
+      "country": "Italy",
+      "type": "Front-Mid-Engined V12 Grand Tourer",
+      "launched": "2024",
+      "engine": "6.5-litre naturally aspirated V12",
+      "power": "Approx. 819 hp",
+      "cardDescription": "A naturally aspirated V12 in an age that has all but outlawed them. Named simply for its twelve cylinders, because nothing else needed saying.",
+      "image": "assets/images/cars/ferrari-12cilindri.jpg",
+      "imageSource": "Wikimedia Commons: '2025 Ferrari 12Cilindri 2.jpg'",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageVerified": true,
+      "article": "articles/machines/ferrari-12cilindri.html",
+      "moreInfoUrl": "https://en.wikipedia.org/wiki/Ferrari_12Cilindri",
+      "moreInfoLabel": "Wikipedia",
+      "pricing": {
+        "indicative": "From approx. €395,000 / £340,000 / $500,000",
+        "note": "For Ferrari, allocation matters as much as price — the list figure is only the beginning of the conversation."
+      },
+      "sourcing": [
+        { "market": "Italy / Europe", "availability": "Official Ferrari dealers; allocation-based", "indicativePrice": "≈ €395,000 before options" },
+        { "market": "United Kingdom", "availability": "Official Ferrari dealers; allocation-based", "indicativePrice": "≈ £340,000 before options" },
+        { "market": "United States", "availability": "Official Ferrari North America dealers", "indicativePrice": "≈ $500,000 before options" },
+        { "market": "UAE", "availability": "Official dealers in Dubai and Abu Dhabi; a strong V12 market", "indicativePrice": "≈ AED 1.8 million+" },
+        { "market": "Japan", "availability": "Official Ferrari Japan dealers", "indicativePrice": "≈ ¥70 million+" },
+        { "market": "India", "availability": "Official Ferrari presence; import duties roughly double the landed cost", "indicativePrice": "≈ ₹8–9 crore on-road" }
+      ],
+      "uniquePoints": [
+        "One of the last naturally aspirated V12s on sale — no turbochargers, no hybrid assistance.",
+        "The black band across the nose is a deliberate reference to the 365 GTB/4 Daytona's visor.",
+        "Ferrari's V12 lineage is unbroken from the 125 S of 1947, the company's first car."
+      ],
+      "publishedDate": "2026-03-08"
+    },
+    {
+      "id": "aston-martin-vanquish",
+      "kind": "car",
+      "name": "Aston Martin Vanquish",
+      "manufacturer": "Aston Martin",
+      "origin": "Gaydon, Warwickshire, England",
+      "country": "United Kingdom",
+      "type": "V12 Grand Tourer",
+      "launched": "2024",
+      "engine": "5.2-litre twin-turbocharged V12",
+      "power": "Approx. 823 hp",
+      "cardDescription": "The most old-money car in production. British coachbuilding sensibility wrapped around twelve cylinders, built in strictly limited numbers.",
+      "image": "assets/images/cars/aston-martin-vanquish.jpg",
+      "imageSource": "Wikimedia Commons: 'Aston Martin Vanquish (2024) DSC 7892.jpg'",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageVerified": true,
+      "article": "articles/machines/aston-martin-vanquish.html",
+      "moreInfoUrl": "https://en.wikipedia.org/wiki/Aston_Martin_Vanquish",
+      "moreInfoLabel": "Wikipedia",
+      "pricing": {
+        "indicative": "From approx. £333,000 / $430,000 / €390,000",
+        "note": "Q by Aston Martin commissioning can raise the final figure very substantially."
+      },
+      "sourcing": [
+        { "market": "United Kingdom", "availability": "Official Aston Martin dealers; home market", "indicativePrice": "≈ £333,000 before options" },
+        { "market": "Europe", "availability": "Official dealer network", "indicativePrice": "≈ €390,000 before options" },
+        { "market": "United States", "availability": "Official Aston Martin Americas dealers", "indicativePrice": "≈ $430,000 before options" },
+        { "market": "UAE", "availability": "Official dealers in Dubai and Abu Dhabi", "indicativePrice": "≈ AED 1.6 million+" },
+        { "market": "Japan", "availability": "Official Aston Martin Japan dealers", "indicativePrice": "≈ ¥60 million+" },
+        { "market": "India", "availability": "Limited official presence; import duties roughly double the landed cost", "indicativePrice": "≈ ₹8 crore+ on-road" }
+      ],
+      "uniquePoints": [
+        "Aston Martin took its name from the Aston Clinton hillclimb and founder Lionel Martin.",
+        "Q by Aston Martin will build essentially bespoke commissions — closer to Savile Row than a configurator.",
+        "One of the very few manufacturers still committing to a twelve-cylinder flagship."
+      ],
+      "publishedDate": "2026-03-08"
+    },
+    {
+      "id": "lamborghini-revuelto",
+      "kind": "car",
+      "name": "Lamborghini Revuelto",
+      "manufacturer": "Lamborghini",
+      "origin": "Sant'Agata Bolognese, Italy",
+      "country": "Italy",
+      "type": "V12 Hybrid Flagship",
+      "launched": "2023",
+      "engine": "6.5-litre V12 with three electric motors",
+      "power": "Approx. 1,001 hp combined",
+      "cardDescription": "The first V12 hybrid Lamborghini. A thousand horsepower, scissor doors, and not one gram of restraint — the collection's statement of raw power.",
+      "image": "assets/images/cars/lamborghini-revuelto.jpg",
+      "imageSource": "Wikimedia Commons: 'Lamborghini Revuelto DSC 6987.jpg'",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageVerified": true,
+      "article": "articles/machines/lamborghini-revuelto.html",
+      "moreInfoUrl": "https://en.wikipedia.org/wiki/Lamborghini_Revuelto",
+      "moreInfoLabel": "Wikipedia",
+      "pricing": {
+        "indicative": "From approx. €500,000 / £450,000 / $610,000",
+        "note": "Options and long waiting lists are the norm; few cars leave the factory at base specification."
+      },
+      "sourcing": [
+        { "market": "Italy / Europe", "availability": "Official Lamborghini dealers; long waiting list", "indicativePrice": "≈ €500,000 before options" },
+        { "market": "United Kingdom", "availability": "Official Lamborghini dealers", "indicativePrice": "≈ £450,000 before options" },
+        { "market": "United States", "availability": "Official Lamborghini Americas dealers", "indicativePrice": "≈ $610,000 before options" },
+        { "market": "UAE", "availability": "Official dealers; one of the brand's strongest markets", "indicativePrice": "≈ AED 2.2 million+" },
+        { "market": "Japan", "availability": "Official Lamborghini Japan dealers", "indicativePrice": "≈ ¥85 million+" },
+        { "market": "India", "availability": "Official Lamborghini India presence; import duties roughly double the landed cost", "indicativePrice": "≈ ₹8.9 crore+ on-road" }
+      ],
+      "uniquePoints": [
+        "Lamborghini's first V12 hybrid — electrification used to add power, not to replace the engine.",
+        "Scissor doors have been a Lamborghini V12 signature since the Countach of the 1970s.",
+        "'Revuelto' follows the house tradition of naming cars after fighting bulls."
+      ],
+      "publishedDate": "2026-03-08"
+    }
+  ]
+}
