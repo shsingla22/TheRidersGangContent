@@ -1,0 +1,164 @@
+<!--
+  THE RIDER'S GANG — MACHINE ARTICLE TEMPLATE
+  ============================================
+  Used for every article in articles/machines/ (The Paddock).
+  Copy this file, replace every {{PLACEHOLDER}}, keep the class names exactly.
+
+  NOTE ON PATHS: machine articles live one level deeper than heritage
+  articles (articles/machines/x.html), so every asset path uses ../../
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}} | The Rider's Gang</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="keywords" content="{{KEYWORDS}}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{OG_DESCRIPTION}}">
+  <meta property="og:type" content="article">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{TITLE}}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav">
+    <a href="../../index.html" class="site-nav__brand"><img src="../../assets/images/logo-nav.svg" alt="The Rider's Gang" class="nav-logo"></a>
+    <button class="nav-toggle" onclick="document.querySelector('.site-nav__links').classList.toggle('active')" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="site-nav__links">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../index.html#articles">Stories</a></li>
+      <li><a href="#">Horse Riding</a></li>
+      <li><a href="../../machines.html">The Paddock</a></li>
+      <li><a href="../../index.html#archives">Archives</a></li>
+      <li><a href="../../index.html#community">Community</a></li>
+    </ul>
+  </nav>
+
+  <!-- Article -->
+  <article class="article">
+    <span class="article__category">{{CATEGORY}}</span>
+    <h1 class="article__title">{{TITLE}}</h1>
+    <div class="article__meta">
+      <span>By The Rider's Gang</span>
+      <span>|</span>
+      <span>{{DATE}}</span>
+      <span>|</span>
+      <span>{{READ_TIME}} min read</span>
+    </div>
+
+    <!-- Hero Image -->
+    <img class="article__hero-image" src="../../{{HERO_IMAGE}}" alt="{{HERO_ALT}}" loading="eager">
+
+    <!-- Spec plate: the machine at a glance -->
+    <div class="spec-plate">
+      <div class="spec-plate__item"><span class="spec-plate__label">Origin</span><span class="spec-plate__value">{{ORIGIN}}</span></div>
+      <div class="spec-plate__item"><span class="spec-plate__label">Engine</span><span class="spec-plate__value">{{ENGINE}}</span></div>
+      <div class="spec-plate__item"><span class="spec-plate__label">Power</span><span class="spec-plate__value">{{POWER}}</span></div>
+      <div class="spec-plate__item"><span class="spec-plate__label">Indicative Price</span><span class="spec-plate__value">{{PRICE_SUMMARY}}</span></div>
+    </div>
+
+    <div class="article__content">
+
+      {{OPENING_PARAGRAPHS}}
+
+      <h2>Why This Machine</h2>
+      {{WHY_THIS_MACHINE}}
+
+      <h2>The Beauty</h2>
+      {{BEAUTY}}
+
+      <h2>The Power</h2>
+      {{POWER_SECTION}}
+
+      <h2>The History Behind It</h2>
+      {{HISTORY}}
+
+      <h2>What It Costs</h2>
+      {{COST}}
+
+      <h2>Where to Find One</h2>
+      {{SOURCING}}
+
+      <h2>What Makes It Unlike Anything Else</h2>
+      {{UNIQUE}}
+
+      {{CLOSING}}
+
+    </div>
+
+    <!-- Tags -->
+    <div class="article__tags">
+      {{TAGS}}
+    </div>
+
+    <!-- Social Share -->
+    <div class="social-share">
+      <a href="#" class="social-share__btn social-share__btn--twitter">Share on Twitter</a>
+      <a href="#" class="social-share__btn social-share__btn--instagram">Share on Instagram</a>
+      <a href="#" class="social-share__btn social-share__btn--facebook">Share on Facebook</a>
+    </div>
+
+    <!-- Back to the Paddock -->
+    <div class="article__back">
+      <a href="../../machines.html" class="article__back-link">&larr; Back to The Paddock</a>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand"><img src="../../assets/images/logo.svg" alt="The Rider's Gang" class="footer__logo"></div>
+        <p class="footer__desc">Where the saddle meets the street. Stories of horse riding, motorcycle culture, and the fashion born from life in motion.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">Categories</h4>
+        <ul class="footer__links">
+          <li><a href="#">Horse Riding</a></li>
+          <li><a href="#">Motorcycle Culture</a></li>
+          <li><a href="#">Riding Fashion</a></li>
+          <li><a href="#">Boots &amp; Shoes</a></li>
+          <li><a href="../../index.html#community">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Follow Us</h4>
+        <ul class="footer__links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">About</h4>
+        <ul class="footer__links">
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Advertise</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      &copy; 2026 The Rider's Gang. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

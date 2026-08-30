@@ -72,7 +72,8 @@ class TestFileStructure:
         assert len(ARTICLE_FILES) >= 1, "At least one article must exist"
 
     def test_expected_article_count(self):
-        assert len(ARTICLE_FILES) == 10, f"Expected 10 articles, found {len(ARTICLE_FILES)}"
+        # Floor, not a fixed count: the site publishes new stories continuously.
+        assert len(ARTICLE_FILES) >= 12, f"Expected at least 12 articles, found {len(ARTICLE_FILES)}"
 
     @pytest.mark.parametrize("filepath", _html_files())
     def test_html_is_valid_doctype(self, filepath):
@@ -1100,7 +1101,8 @@ class TestHomepageArchive:
     def test_archive_cards_count(self):
         soup = _parse(INDEX)
         cards = soup.select(".archive-card")
-        assert len(cards) >= 5, f"Expected at least 5 archive cards, found {len(cards)}"
+        # The most recent archive group shows image cards; older groups use compact lists.
+        assert len(cards) >= 2, f"Expected at least 2 archive cards, found {len(cards)}"
 
     def test_archive_cards_have_images(self):
         soup = _parse(INDEX)
