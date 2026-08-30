@@ -170,6 +170,27 @@ class TestMachinesData:
             f"{machine['id']}: needs at least 2 unique points"
 
     @pytest.mark.parametrize("machine", MACHINES, ids=MACHINE_IDS)
+    def test_production_status_declared(self, machine):
+        status = machine.get("productionStatus", "")
+        assert status == "current" or re.fullmatch(r"ended-\d{4}", status), \
+            f"{machine['id']}: productionStatus must be 'current' or 'ended-<year>', got {status!r}"
+
+    @pytest.mark.parametrize("machine", MACHINES, ids=MACHINE_IDS)
+    def test_discontinued_machines_are_not_sold_as_current(self, machine):
+        """A machine out of production must never read as a showroom purchase."""
+        if machine["productionStatus"] == "current":
+            return
+        blob = " ".join([
+            machine["cardDescription"],
+            machine["pricing"]["indicative"],
+            machine["pricing"].get("note", ""),
+            " ".join(r["availability"] for r in machine["sourcing"]),
+        ]).lower()
+        assert any(w in blob for w in
+                   ("out of production", "used", "remaining stock", "ended", "no longer")), \
+            f"{machine['id']}: production has ended but nothing says so"
+
+    @pytest.mark.parametrize("machine", MACHINES, ids=MACHINE_IDS)
     def test_more_info_url_is_absolute(self, machine):
         assert machine["moreInfoUrl"].startswith("https://"), \
             f"{machine['id']}: moreInfoUrl must be an absolute https URL"
@@ -419,3 +440,12 @@ class TestHomepageIntegration:
     def test_no_stale_sidebar_markup(self):
         raw = _raw(INDEX)
         assert "bike-sidebar" not in raw, "the retired sidebar markup is still present"
+
+    def test_discontinued_machines_flagged_on_index(self):
+        """The Paddock index must not imply a discontinued machine is on sale."""
+        raw = _raw(MACHINES_INDEX).lower()
+        for m in MACHINES:
+            if m["productionStatus"] == "current":
+                continue
+            assert "out of production" in raw, \
+                f"{m['id']} has ended production but machines.html does not say so"
